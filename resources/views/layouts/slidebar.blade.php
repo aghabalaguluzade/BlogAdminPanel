@@ -34,7 +34,6 @@
 								<i class="ph-house"></i>
 								<span>
 									Əsas səhifə
-									<span class="d-block fw-normal opacity-50">No pending orders</span>
 								</span>
 							</a>
 						</li>
@@ -46,8 +45,10 @@
 							<ul class="nav-group-sub collapse">
 								{{-- <li class="nav-item"><a href="" class="nav-link active">Default layout</a></li> --}}
 								<li class="nav-item"><a href="{{ route('blogs.create') }}" class="nav-link">Əlavə et</a></li>
+								<li class="nav-item"><a href="{{ route('blogs.index') }}" class="nav-link">Siyahı</a></li>
 							</ul>
 						</li>
+
 					</ul>
 				</div>
 				<!-- /main navigation -->

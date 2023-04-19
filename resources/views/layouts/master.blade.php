@@ -5,9 +5,16 @@
      @include('layouts.navbar')
      <div class="page-content">
           @include('layouts.slidebar')
-          @yield('content')
+               <div class="content-wrapper">
+                    <div class="content-inner">
+                         @include('layouts.header')
+                         @yield('content')
+                         @include('layouts.footer')
+                    </div>
+                    <div class="btn-to-top"><button class="btn btn-secondary btn-icon rounded-pill" type="button"><i class="ph-arrow-up"></i></button></div>
+               </div>
      </div>
      @include('layouts.notifications')
-     @include('layouts.config')
+     @yield('scripts')
 </body>
 </html>

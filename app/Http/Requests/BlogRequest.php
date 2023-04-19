@@ -23,16 +23,18 @@ class BlogRequest extends FormRequest
     {
         if(request()->routeIs('blogs.store')) {
             $imgValidation = 'required';
+            $statusValidation = 'nullable';
         }elseif(request()->routeIs('blogs.update')) {
             $imgValidation = 'sometimes';
+            $statusValidation = 'in:0,1';
         };
-        
+
         return [
-            'title' => ['required'],
-            'content' => ['required'],
-            'img' => [$imgValidation,'image|size:1024','mimes:jpeg,png,svg,webp'],
-            'slug' => ['required'],
-            'status' => ['required']
+            'title' => ['required','string'],
+            'content' => ['required','string'],
+            'img' => [$imgValidation, 'image', 'max:2048', 'mimes:png,jpg,jpeg,gif,jfif,webp'],
+            'slug' => ['string'],
+            'status' => [$statusValidation]
         ];
     }
 }

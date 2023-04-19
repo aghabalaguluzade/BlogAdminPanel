@@ -15,8 +15,9 @@ return new class extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
+            $table->string('img');
             $table->string('slug');
-            $table->integer('view_count');
+            $table->integer('view_count')->default(0);
             $table->enum('status',['0','1'])->default('0');
             $table->timestamps();
             $table->softDeletes();

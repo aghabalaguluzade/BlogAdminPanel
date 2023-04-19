@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Blog;
+use Illuminate\Support\Str;
 use App\Repositories\Contracts\BlogRepositoryInterface;
 
 class BlogRepository implements BlogRepositoryInterface
@@ -26,6 +27,15 @@ class BlogRepository implements BlogRepositoryInterface
 
     public function create(array $data)
     {
+        $image = $data['img'];
+        $directory = 'uploads/blogs/';
+        $img_name = Str::slug($data['title']) . "." . $image->getClientOriginalExtension();
+        $image->move($directory, $img_name);
+        $img_name = $directory . $img_name;
+
+        $data['img'] = $img_name;
+        $data['slug'] = Str::slug($data['title']);
+
         return $this->model->create($data);
     }
 
@@ -36,6 +46,7 @@ class BlogRepository implements BlogRepositoryInterface
 
     public function delete($id)
     {
-        return $this->model->destroy($id);
+        $this->model->findOrFail($id)->delete();
     }
+
 }

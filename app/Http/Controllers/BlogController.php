@@ -12,7 +12,7 @@ class BlogController extends Controller
 
     public function __construct(BlogRepositoryInterface $blogRepository)
     {
-        $this->blogRepository = $blogRepository;
+        $this->blogRepository = $blogRepository;    
     }
 
     public function index()
@@ -31,31 +31,34 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('blogs.createBlog');
+        return view('blogs.create');
     }
 
     public function store(BlogRequest $request)
-    {
-        $data = $request->all();
-        
-        $blog = $this->blogRepository->create($data);
+    {   
+        $blog = $this->blogRepository->create($request->validated());
 
-        return redirect()->route('blogs.show', $blog->id);
+        return redirect()->back()->with($blog  ? "success" : "error", true);
+    }
+
+    public function edit($id = 1) {
+        $blog = $this->blogRepository->find($id);
+        return view('blogs.edit',compact('blog'));
     }
 
     public function update(BlogRequest $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $this->blogRepository->update($data, $id);
 
-        return redirect()->route('blogs.show', $id);
+        return redirect()->route('blogs.index');
     }
 
     public function destroy($id)
     {
         $this->blogRepository->delete($id);
-
+        
         return redirect()->route('blogs.index');
     }
 }

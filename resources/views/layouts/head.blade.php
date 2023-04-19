@@ -10,6 +10,8 @@
 	<link href="{{ asset('assets/css/ltr/all.min.css') }}" id="stylesheet" rel="stylesheet" type="text/css" />
 	<!-- /global stylesheets -->
 
+	@yield('links')
+
 	<!-- Core JS files -->
 	<script src="{{ asset('assets/demo/demo_configurator.js') }}"></script>
 	<script src="{{ asset('assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
