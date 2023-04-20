@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BlogRequest;
+use App\Http\Requests\StatusRequest;
 use App\Repositories\Contracts\BlogRepositoryInterface;
-
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -19,31 +20,32 @@ class BlogController extends Controller
     {
         $blogs = $this->blogRepository->all();
 
-        return view('blogs.index', compact('blogs'));
+        return view('admin.blogs.index', compact('blogs'));
     }
 
     public function show($id)
     {
         $blog = $this->blogRepository->find($id);
 
-        return view('blogs.show', compact('blog'));
+        return view('admin.blogs.show', compact('blog'));
     }
 
     public function create()
     {
-        return view('blogs.create');
+        return view('admin.blogs.create');
     }
 
     public function store(BlogRequest $request)
     {   
-        $blog = $this->blogRepository->create($request->validated());
+        $data = $request->validated();
+        $blog = $this->blogRepository->create($data);
 
         return redirect()->back()->with($blog  ? "success" : "error", true);
     }
 
-    public function edit($id = 1) {
+    public function edit($id) {
         $blog = $this->blogRepository->find($id);
-        return view('blogs.edit',compact('blog'));
+        return view('admin.blogs.edit',compact('blog'));
     }
 
     public function update(BlogRequest $request, $id)
@@ -61,4 +63,11 @@ class BlogController extends Controller
         
         return redirect()->route('blogs.index');
     }
+
+    public function updateStatus(StatusRequest $request, $id)
+    {
+        $blog = $this->blogRepository->updateStatus($id, $request->status);
+        return response()->json($blog);
+    }
+
 }

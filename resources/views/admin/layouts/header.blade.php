@@ -3,7 +3,7 @@
 					<div class="page-header-content d-lg-flex">
 						<div class="d-flex">
 							<h4 class="page-title mb-0">
-								Bloq - <span class="fw-normal">Əlavə et</span>
+								@yield('header')
 							</h4>
 
 							<a href="#page_header" class="btn btn-light align-self-center d-lg-none border-transparent rounded-pill p-0 ms-auto collapsed" data-bs-toggle="collapse" aria-expanded="false">

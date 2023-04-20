@@ -30,23 +30,20 @@
 							<i class="ph-dots-three sidebar-resize-show"></i>
 						</li>
 						<li class="nav-item">
-							<a href="index.html" class="nav-link active">
+							<a href="{{ route('home') }}" class="nav-link {{ (request()->is('admin')) ? 'active' : '' }}">
 								<i class="ph-house"></i>
 								<span>
 									Əsas səhifə
 								</span>
 							</a>
 						</li>
-						<li class="nav-item nav-item-submenu">
-							<a href="" class="nav-link">
-								<i class="ph-layout"></i>
-								<span>Bloq</span>
-							</a>
-							<ul class="nav-group-sub collapse">
-								{{-- <li class="nav-item"><a href="" class="nav-link active">Default layout</a></li> --}}
-								<li class="nav-item"><a href="{{ route('blogs.create') }}" class="nav-link">Əlavə et</a></li>
-								<li class="nav-item"><a href="{{ route('blogs.index') }}" class="nav-link">Siyahı</a></li>
-							</ul>
+						<li class="nav-item">
+							<a href="{{ route('blogs.index') }}" class="nav-link {{ (request()->segment(2) == 'blogs') ? 'active' : '' }}">
+								<i class="ph-house"></i>
+								<span>
+									Bloq
+								</span>
+							</a>	
 						</li>
 
 					</ul>

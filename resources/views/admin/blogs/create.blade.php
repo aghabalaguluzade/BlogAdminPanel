@@ -1,7 +1,10 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 @section('title', 'Əlavə etmək')
 @section('links')
 	<script src="https://cdn.tiny.cloud/1/scvngxld7kolvh817hw9omsrym0g2d96ke02f1jb08mz6ih1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+@endsection
+@section('header')
+    Bloq - <span class="fw-normal">Əlavə et</span>
 @endsection
 @section('content')
 				<!-- Content area -->
@@ -13,7 +16,7 @@
 							<h5 class="mb-0">Bloq əlavə et</h5>
 						</div>
 						<div class="card-body">
-                            @include('settings.errors')
+                            @include('admin.settings.errors')
                             <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4">
@@ -48,20 +51,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="row mb-3">
-                                    <label class="col-form-label col-lg-2">Bloq Statusu</label>
-                                        <div class="col-lg-10">
-                                            <div class="form-floating">
-                                                <select class="form-select" name="status">
-                                                    <option disabled selected>Statusu seçin...</option>
-                                                    <option value="1">Aktiv</option>
-                                                    <option value="0">Deaktiv</option>
-                                                </select>
-                                                <label>Bloqun əlavə olunması</label>
-                                            </div>
-                                        </div>
-                                    </div>	
 
                                     <div class="d-flex align-items-center justify-content-end">
 										<button type="submit" class="btn btn-primary">Əlavə et <i class="ph-paper-plane-tilt ms-2"></i></button>

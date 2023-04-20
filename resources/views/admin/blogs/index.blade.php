@@ -1,19 +1,25 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 @section('title', 'Bloq Siyahısı')
 @section('links')
      <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
      <script src="{{ asset('assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
      <script src="{{ asset('assets/demo/pages/datatables_basic.js') }}"></script>
 @endsection
+@section('header')
+     Bloq - <span class="fw-normal">Siyahısı</span>
+@endsection
 @section('content')
 	<div class="content">
 		<!-- Pagination types -->
      <div class="card">
-          <div class="card-header">
-               <h5 class="mb-0">Pagination types</h5>
+          <div class="card-header d-flex justify-content-between">
+               <h5 class="mb-0">Bloq Siyahısı</h5>
+               <a href="{{ route('blogs.create') }}">
+                    <button type="button" class="btn btn-info my-1 me-2">
+                         Əlavə et
+                    </button>
+               </a>
           </div>
-
-        
 
           <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                
@@ -35,23 +41,27 @@
                                    <td class="sorting_1">{{ $loop->iteration }}</td>
                                    <td>{{ $blog->title }}</td>
                                    <td>
-                                   @if($blog->status == "1")
-                                   <span class="badge bg-danger bg-opacity-10 text-danger">Deaktiv</span>
+                                   @if($blog->status == "0")
+                                        <span class="badge bg-danger bg-opacity-10 text-danger">Deaktiv</span>
                                    @else
                                    <span class="badge bg-danger bg-opacity-10 text-success">Aktiv</span>
                                    @endif
                                    </td>
                                    <td>
-                                        <form action="{{ route('blogs.destroy',$blog->id)}}" method="POST" style="display:inline">
+                                        {{-- <form action="{{ route('blogs.destroy',$blog->id)}}" method="POST" style="display:inline">
                                         @method('DELETE')
                                         @csrf
                                              <button type="submit" class="btn btn-danger my-1 me-2">Sil</button>
-                                        </form>
+                                        </form> --}}
+                                        <button type="button" class="btn btn-danger my-1 me-2" onclick="blog_delete({{ $blog->id }})">Sil</button>
                                         <a href="{{ route('blogs.edit',$blog->id) }}">
                                         <button type="button" class="btn btn-info my-1 me-2">
                                              Redaktə et
                                         </button>
                                         </a>
+                                        <div class="form-check form-switch mb-2" style="display:inline">
+									<input type="checkbox" class="form-check-input form-check-input-success status-checkbox" data-id="{{ $blog->id }}" id="sc_r_danger" {{ $blog->status ? 'checked' : '' }}  style="margin-top:16px;" />
+							     </div>
                                    <td>
                               </tr>
                               
@@ -64,4 +74,9 @@
      </div>
      <!-- /pagination types -->
 	</div>
+@endsection
+@section('scripts')
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <script src="{{ asset('ajax/blogs.js') }}"></script>
+
 @endsection

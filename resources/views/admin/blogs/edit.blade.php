@@ -1,7 +1,10 @@
-@extends('layouts.master')
-@section('title', 'Əlavə etmək')
+@extends('admin.layouts.master')
+@section('title', 'Redaktə etmək')
 @section('links')
 <script src="https://cdn.tiny.cloud/1/scvngxld7kolvh817hw9omsrym0g2d96ke02f1jb08mz6ih1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+@endsection
+@section('header')
+     Bloq - <span class="fw-normal">Redaktə et</span>
 @endsection
 @section('content')
 <!-- Content area -->
@@ -10,10 +13,10 @@
      <!-- Form inputs -->
      <div class="card">
           <div class="card-header">
-               <h5 class="mb-0">Bloq əlavə et</h5>
+               <h5 class="mb-0">Bloq redaktə et</h5>
           </div>
           <div class="card-body">
-               @include('settings.errors')
+               @include('admin.settings.errors')
                <form action="{{ route('blogs.update',$blog->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -38,8 +41,15 @@
                          </div>
 
                          <div class="row mb-3">
-                              <span>Çari foto</span>
-                              <img src="{{ asset($blog->img) }}" alt="{{ $blog->title }}" />
+                              <span class="col-form-label col-lg-2">Çari foto</span>
+                              <div class="col-lg-10">
+                                   <div class="form-floating">
+                                        <img src="{{ asset($blog->img) }}" alt="{{ $blog->title }}" style="width:150px; height:150px;" />
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="row mb-3">
                               <label class="col-form-label col-lg-2">Bloq Şəkili</label>
                               <div class="col-lg-10">
                                    <div class="input-group">

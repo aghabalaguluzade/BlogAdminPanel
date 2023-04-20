@@ -41,12 +41,41 @@ class BlogRepository implements BlogRepositoryInterface
 
     public function update(array $data, $id)
     {
-        return $this->model->where('id', $id)->update($data);
+        $data['slug'] = Str::slug($data['title']);
+        $blog = $this->model->findOrFail($id);
+    
+        if(request()->hasFile("img")) {
+            $image = request()->file('img');
+            $directory = 'uploads/blogs/';
+            $img_name = Str::slug($data['title']) . '.' . $image->getClientOriginalExtension();
+            
+            if(file_exists($blog->img)) {
+                unlink($blog->img);
+            }
+            
+            $image->move($directory, $img_name);
+            $img_name = $directory . $img_name;
+            $blog['img'] = $img_name;
+        }
+        
+        return $blog->update($data);
+
+        // return $this->model->where('id', $id)->update($data);
     }
 
     public function delete($id)
     {
         $this->model->findOrFail($id)->delete();
     }
+
+    public function updateStatus($id, $status)
+    {
+        $blog = $this->model->findOrFail($id);
+        $blog->status = $status;
+        $blog->save();
+
+        return $blog;
+    }
+
 
 }

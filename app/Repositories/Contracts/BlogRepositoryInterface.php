@@ -13,4 +13,6 @@ interface BlogRepositoryInterface
     public function update(array $data, $id);
 
     public function delete($id);
+
+    public function updateStatus(array $id, $data);
 }
