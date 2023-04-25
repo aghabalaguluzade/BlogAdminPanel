@@ -8,7 +8,6 @@ $(document).ready(function () {
 
          $.ajax({
              method: 'POST',
-          //    url : "{{ route('blogs.updateStatus', ':id') }}".replace(':id',id),
              url : `blogs/updateStatus/${id}`.replace(':id',id),
              data: {
                _token,
@@ -16,7 +15,7 @@ $(document).ready(function () {
                '_method': 'PUT'
           },
              success: function (data) {
-                 console.log(data);
+                document.getElementById('status').innerHTML = data.status === true ? "Aktiv" : "Deaktiv";
              },
              error : function(err) {
                console.log(err);
@@ -26,7 +25,6 @@ $(document).ready(function () {
  });
 
  const blog_delete = (id) => {
-console.log('salam');
   swal({
       title: "Diqqət!",
       text: "Silinən informasiya geri qaytarılmır, yenidən əlavə olunmaldır!",
@@ -44,10 +42,8 @@ console.log('salam');
             _method: 'DELETE'
         },
         url : `blogs/${id}`,
-        success: function (data,e) {
-          e.preventDefault();
-          console.log(data);
-          window.location='/blogs'
+        success: function (data) {
+          document.getElementById('all').innerHTML = '';
         },
         error : function(err) {
           console.log(err);

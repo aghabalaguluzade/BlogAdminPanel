@@ -27,7 +27,7 @@ class BlogRequest extends FormRequest
         }elseif(request()->routeIs('blogs.update')) {
             $imgValidation = 'sometimes';
             $statusValidation = 'boolean';
-        };
+        }
 
         return [
             'title' => ['required','string'],

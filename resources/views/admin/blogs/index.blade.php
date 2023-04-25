@@ -37,22 +37,17 @@
 
                          @foreach ($blogs as $blog)
 
-                              <tr class="odd">
-                                   <td class="sorting_1">{{ $loop->iteration }}</td>
-                                   <td>{{ $blog->title }}</td>
-                                   <td>
-                                   @if($blog->status == "0")
-                                        <span class="badge bg-danger bg-opacity-10 text-danger">Deaktiv</span>
+                              <tr class="odd" id="all">
+                                   <td class="sorting_1" id="loop">{{ $loop->iteration }}</td>
+                                   <td id="title">{{ $blog->title }}</td>
+                                   <td id="status_td">
+                                   @if($blog->status == 0)
+                                        <span class="badge bg-danger bg-opacity-10 text-danger" id="status">Deaktiv</span>
                                    @else
-                                   <span class="badge bg-danger bg-opacity-10 text-success">Aktiv</span>
+                                   <span class="badge bg-danger bg-opacity-10 text-success" id="status">Aktiv</span>
                                    @endif
                                    </td>
-                                   <td>
-                                        {{-- <form action="{{ route('blogs.destroy',$blog->id)}}" method="POST" style="display:inline">
-                                        @method('DELETE')
-                                        @csrf
-                                             <button type="submit" class="btn btn-danger my-1 me-2">Sil</button>
-                                        </form> --}}
+                                   <td id="operation">
                                         <button type="button" class="btn btn-danger my-1 me-2" onclick="blog_delete({{ $blog->id }})">Sil</button>
                                         <a href="{{ route('blogs.edit',$blog->id) }}">
                                         <button type="button" class="btn btn-info my-1 me-2">

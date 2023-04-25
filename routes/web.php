@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,26 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 
 */
-// Route::prefix('admin')->group(function() {
-//     Route::view('/','index')->name('home');
-//     Route::resource('blogs',BlogController::class);
-// })->middleware('admin');
 
-// Route::group(['middleware' => 'auth'],function() {
-//     Route::group([
-//         'prefix' => 'admin',
-//         'middleware' => 'admin',
-//         'as' => 'admin'
-//     ],function() {
-//         Route::view('/','index')->name('home');
-//         Route::resource('blogs',BlogController::class);
-//     });
-// });
-
-
-
-Route::prefix('admin')->group(function() {
-    Route::view('/','index')->name('home');
-    Route::resource('blogs',BlogController::class);
-    Route::put('blogs/updateStatus/{id}', [BlogController::class, 'updateStatus'])->name('blogs.updateStatus');
+Route::middleware(['auth', 'admin'])->group(function () {
+        Route::prefix('admin')->group(function () {
+                Route::view('/', 'index')->name('home');
+                Route::resource('blogs', BlogController::class);
+                Route::put('blogs/updateStatus/{id}', [BlogController::class, 'updateStatus'])->name('blogs.updateStatus');
+                Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+                Route::post('/settings', [SettingsController::class, 'updateOrCreate'])->name('settings.updateOrCreate');
+        });
 });
+
+Route::get('/login', [AuthController::class, 'loginIndex'])->name('loginIndex');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

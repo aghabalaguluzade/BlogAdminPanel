@@ -8,5 +8,4 @@ interface GeneralRepositoryInterface
 
     public function updateOrCreate($data);
 
-
 }

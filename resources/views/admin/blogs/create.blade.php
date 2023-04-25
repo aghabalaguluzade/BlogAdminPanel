@@ -16,7 +16,7 @@
 							<h5 class="mb-0">Bloq əlavə et</h5>
 						</div>
 						<div class="card-body">
-                            @include('admin.settings.errors')
+                            @include('admin.errors.errors')
                             <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4">
@@ -65,7 +65,7 @@
 				<!-- content area -->
 @endsection
 @section('scripts')
-	<script>
+<script>
   var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   tinymce.init({
       selector: '#editor',

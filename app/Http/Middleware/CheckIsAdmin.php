@@ -15,10 +15,10 @@ class CheckIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() && !auth()->user()->is_admin) {
-            abort(403);
+        if (auth()->user()->is_admin != 1) {
+            return to_route('loginIndex');
         }
-    
+        
         return $next($request);
     }
 }

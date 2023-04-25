@@ -16,7 +16,7 @@
                <h5 class="mb-0">Bloq redaktə et</h5>
           </div>
           <div class="card-body">
-               @include('admin.settings.errors')
+               @include('admin.errors.errors')
                <form action="{{ route('blogs.update',$blog->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -58,20 +58,6 @@
                                         <span class="input-group-text">.jpeg</span>
                                         <span class="input-group-text">.png</span>
                                         <span class="input-group-text">.webp</span>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="row mb-3">
-                              <label class="col-form-label col-lg-2">Bloq Statusu</label>
-                              <div class="col-lg-10">
-                                   <div class="form-floating">
-                                        <select class="form-select" name="status">
-                                             <option disabled selected>Statusu seçin...</option>
-                                             <option value="1" {{ $blog->status == '1' ? "selected" : '' }}>Aktiv</option>
-                                             <option value="0" {{ $blog->status == '0' ? "selected" : '' }}>Deaktiv</option>
-                                        </select>
-                                        <label>Bloqun əlavə olunması</label>
                                    </div>
                               </div>
                          </div>

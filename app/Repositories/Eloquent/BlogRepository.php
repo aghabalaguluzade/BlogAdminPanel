@@ -59,8 +59,6 @@ class BlogRepository implements BlogRepositoryInterface
         }
         
         return $blog->update($data);
-
-        // return $this->model->where('id', $id)->update($data);
     }
 
     public function delete($id)
@@ -71,7 +69,7 @@ class BlogRepository implements BlogRepositoryInterface
     public function updateStatus($id, $status)
     {
         $blog = $this->model->findOrFail($id);
-        $blog->status = $status;
+        $blog->status = $blog->status == true ? false : true;
         $blog->save();
 
         return $blog;

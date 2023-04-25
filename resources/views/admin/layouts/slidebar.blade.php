@@ -29,6 +29,7 @@
 							<div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Main</div>
 							<i class="ph-dots-three sidebar-resize-show"></i>
 						</li>
+						
 						<li class="nav-item">
 							<a href="{{ route('home') }}" class="nav-link {{ (request()->is('admin')) ? 'active' : '' }}">
 								<i class="ph-house"></i>
@@ -37,11 +38,21 @@
 								</span>
 							</a>
 						</li>
+						
 						<li class="nav-item">
 							<a href="{{ route('blogs.index') }}" class="nav-link {{ (request()->segment(2) == 'blogs') ? 'active' : '' }}">
 								<i class="ph-house"></i>
 								<span>
 									Bloq
+								</span>
+							</a>	
+						</li>
+
+						<li class="nav-item">
+							<a href="{{ route('settings.index') }}" class="nav-link {{ (request()->segment(2) == 'settings') ? 'active' : '' }}">
+								<i class="ph-house"></i>
+								<span>
+									Tənzimləmələr
 								</span>
 							</a>	
 						</li>

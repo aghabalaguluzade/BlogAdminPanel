@@ -25,31 +25,13 @@
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-end">
-						<a href="#" class="dropdown-item">
+						<a href="{{ route('profile') }}" class="dropdown-item">
 							<i class="ph-user-circle me-2"></i>
-							My profile
+							Profilim
 						</a>
-						<a href="#" class="dropdown-item">
-							<i class="ph-currency-circle-dollar me-2"></i>
-							My subscription
-						</a>
-						<a href="#" class="dropdown-item">
-							<i class="ph-shopping-cart me-2"></i>
-							My orders
-						</a>
-						<a href="#" class="dropdown-item">
-							<i class="ph-envelope-open me-2"></i>
-							My inbox
-							<span class="badge bg-primary rounded-pill ms-auto">26</span>
-						</a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item">
-							<i class="ph-gear me-2"></i>
-							Account settings
-						</a>
-						<a href="#" class="dropdown-item">
+						<a href="{{ route('logout') }}" class="dropdown-item">
 							<i class="ph-sign-out me-2"></i>
-							Logout
+							Çıxış
 						</a>
 					</div>
 				</li>

@@ -15,10 +15,15 @@ class SettingsController extends Controller
         $this->generalRepository = $generalRepository;
     }
 
+    public function index() {
+        return view('admin.settings.create');
+    }
+
     public function updateOrCreate(SettingsRequest $request) {
         
         $data = $request->validated();
 
         $settings = $this->generalRepository->updateOrCreate($data);
+        dd($settings);
     }
 }
