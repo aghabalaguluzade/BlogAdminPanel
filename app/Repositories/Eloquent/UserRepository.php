@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories\Eloquent;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 
@@ -27,8 +28,35 @@ class UserRepository
         return User::find($id);
     }
 
-    public function login(array $data)
+    public function findByEmailAndPassword($email, $password)
     {
-        return User::where($data)->first();
+        $user = User::where('email', $email)->first();
+
+        if ($user && Hash::check($password, $user->password)) {
+            return $user;
+        }
+
+        return null;
+    }
+
+    public function updateProfile($id, array $data)
+    {
+        $user = $this->find($id);
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        
+        
+        if(!empty($data['new_password']) && !empty($data['password'])){
+            if (!Hash::check($data['password'], $user->password)) {
+                return false;
+                return redirect()->back()->with('password', 'Daxil etdiyiniz şifrə ilə bağlı hesab yoxdur',true);
+            }
+            $user->password = bcrypt($data['new_password']);
+        }
+
+            
+
+        $user->save();
+        return $user;
     }
 }

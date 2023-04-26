@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactMeController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
                 Route::put('blogs/updateStatus/{id}', [BlogController::class, 'updateStatus'])->name('blogs.updateStatus');
                 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
                 Route::post('/settings', [SettingsController::class, 'updateOrCreate'])->name('settings.updateOrCreate');
+                Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+                Route::put('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
+                Route::get('contact-me', [ContactMeController::class, 'index'])->name('contactMe');
         });
 });
 

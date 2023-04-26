@@ -7,19 +7,30 @@
 									</div>
 
 									<div class="card-body">
-										<form action="#">
+									@include('admin.errors.errors')
+										<form method="POST" action="{{ route('profile.update') }}">
+											@csrf
+                        							@method('PUT')
 											<div class="row">
+
 												<div class="col-lg-6">
 													<div class="mb-3">
-														<label class="form-label">Username</label>
-														<input type="text" value="Vicky" readonly="" class="form-control">
+														<label class="form-label">Ad Soyad</label>
+														<input type="text" class="form-control" placeholder="Ad Soyad daxil edin..." name="name" value="{{ $user?->name }}" />
 													</div>
 												</div>
 
 												<div class="col-lg-6">
 													<div class="mb-3">
-														<label class="form-label">Current password</label>
-														<input type="password" value="password" readonly="" class="form-control">
+														<label class="form-label">E-poçt</label>
+														<input type="email" class="form-control" placeholder="E-poçt daxil edin..." name="email" value="{{ $user?->email }}" />
+													</div>
+												</div>
+
+												<div class="col-lg-6">
+													<div class="mb-3">
+														<label class="form-label">Çari Şifrə</label>
+														<input type="password" class="form-control" placeholder="Çari şifrəni daxil edin..." name="password" />
 													</div>
 												</div>
 											</div>
@@ -27,69 +38,15 @@
 											<div class="row">
 												<div class="col-lg-6">
 													<div class="mb-3">
-														<label class="form-label">New password</label>
-														<input type="password" placeholder="Enter new password" class="form-control">
+														<label class="form-label">Yeni şifrə</label>
+														<input type="password" placeholder="Yeni şifrə daxil edin..." class="form-control" name="new_password" />
 													</div>
 												</div>
 
 												<div class="col-lg-6">
 													<div class="mb-3">
-														<label class="form-label">Repeat password</label>
-														<input type="password" placeholder="Repeat new password" class="form-control">
-													</div>
-												</div>
-											</div>
-
-											<div class="row">
-												<div class="col-lg-6">
-													<div class="mb-3">
-														<label class="form-label">Profile visibility</label>
-
-														<label class="form-check mb-2">
-															<input type="radio" name="visibility" class="form-check-input" checked="">
-															<span class="form-check-label">Visible to everyone</span>
-														</label>
-
-														<label class="form-check mb-2">
-															<input type="radio" name="visibility" class="form-check-input">
-															<span class="form-check-label">Visible to friends only</span>
-														</label>
-
-														<label class="form-check mb-2">
-															<input type="radio" name="visibility" class="form-check-input">
-															<span class="form-check-label">Visible to my connections only</span>
-														</label>
-
-														<label class="form-check">
-															<input type="radio" name="visibility" class="form-check-input">
-															<span class="form-check-label">Visible to my colleagues only</span>
-														</label>
-													</div>
-												</div>
-
-												<div class="col-lg-6">
-													<div class="mb-3">
-														<label class="form-label">Notifications</label>
-
-														<label class="form-check mb-2">
-															<input type="checkbox" class="form-check-input" checked="">
-															<span class="form-check-label">Password expiration notification</span>
-														</label>
-
-														<label class="form-check mb-2">
-															<input type="checkbox" class="form-check-input" checked="">
-															<span class="form-check-label">New message notification</span>
-														</label>
-
-														<label class="form-check mb-2">
-															<input type="checkbox" class="form-check-input" checked="">
-															<span class="form-check-label">New task notification</span>
-														</label>
-
-														<label class="form-check">
-															<input type="checkbox" class="form-check-input">
-															<span class="form-check-label">New contact request notification</span>
-														</label>
+														<label class="form-label">Şifrə təkrarı</label>
+														<input type="password" placeholder="Şifrə təkrarını daxil edin..." class="form-control" name="repeat_password" />
 													</div>
 												</div>
 											</div>

@@ -41,7 +41,7 @@
 						
 						<li class="nav-item">
 							<a href="{{ route('blogs.index') }}" class="nav-link {{ (request()->segment(2) == 'blogs') ? 'active' : '' }}">
-								<i class="ph-house"></i>
+								<i class="ph-article"></i>
 								<span>
 									Bloq
 								</span>
@@ -50,9 +50,18 @@
 
 						<li class="nav-item">
 							<a href="{{ route('settings.index') }}" class="nav-link {{ (request()->segment(2) == 'settings') ? 'active' : '' }}">
-								<i class="ph-house"></i>
+								<i class="ph-gear"></i>
 								<span>
 									Tənzimləmələr
+								</span>
+							</a>	
+						</li>
+
+						<li class="nav-item">
+							<a href="{{ route('contactMe') }}" class="nav-link {{ (request()->segment(2) == 'contact-me') ? 'active' : '' }}">
+								<i class="ph-gear"></i>
+								<span>
+									Əlaqə
 								</span>
 							</a>	
 						</li>

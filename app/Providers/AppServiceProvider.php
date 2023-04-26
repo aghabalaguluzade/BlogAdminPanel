@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Repositories\Contracts\BlogRepositoryInterface;
+use App\Repositories\Contracts\ContactMeRepositoryInterface;
 use App\Repositories\Contracts\GeneralRepositoryInterface;
 use App\Repositories\Eloquent\BlogRepository;
 use App\Repositories\Eloquent\GeneralRepository;
+use App\Repositories\Eloquent\ContactMeRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(BlogRepositoryInterface::class, BlogRepository::class);
         $this->app->bind(GeneralRepositoryInterface::class, GeneralRepository::class);
+        $this->app->bind(ContactMeRepositoryInterface::class, ContactMeRepository::class);
     }
 
     /**

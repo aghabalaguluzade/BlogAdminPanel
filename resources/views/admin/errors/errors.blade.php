@@ -25,3 +25,9 @@
         <p>Səhifə Tapılmadı!</p>
     </div>
 @endif
+
+@if (session('password'))
+    <div class="alert alert-danger">
+        {{ session('password') }}
+    </div>
+@endif

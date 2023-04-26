@@ -3,10 +3,9 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\ContactMe;
-use Illuminate\Support\Str;
 use App\Repositories\Contracts\ContactMeRepositoryInterface;
 
-class BlogRepository implements ContactMeRepositoryInterface
+class ContactMeRepository implements ContactMeRepositoryInterface
 {
     protected $model;
 

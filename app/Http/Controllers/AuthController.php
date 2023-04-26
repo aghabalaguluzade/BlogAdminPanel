@@ -6,6 +6,7 @@ use App\Http\Requests\AuthRequest;
 use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -27,10 +28,11 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($request->only(['email', 'password']))) {
+        if(Auth::attempt($request->only(['email', 'password'],$request->boolean('remember')))) {
             $request->session()->regenerate();
             return redirect()->intended('/admin');
         }
+
         return back()->withErrors([
             'email' => 'Daxil olunan email səhvdir.',
             'password' => "Daxil olunan şifrə səhvdir"
@@ -46,4 +48,26 @@ class AuthController extends Controller
 
         return to_route('login');
     }
+
+    public function profile()
+    {
+        $user = $this->userRepository->find(auth()->id());
+        return view('admin.auth.profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $data = $request->validate([
+            'name' => ['string', 'max:255'],
+            'password' => ['nullable', 'string'],
+            'email' => ['string', 'email', 'max:255', 'unique:users,email,'.auth()->id()],
+            'new_password' => ['nullable', 'string', 'min:7',],
+            'repeat_password' => ['same:new_password']
+        ]);
+
+        $profile = $this->userRepository->updateProfile(Auth::user()->id, $data);
+
+        return redirect()->route('profile')->with($profile  ? "success" : "error", true);
+    }
+
 }
