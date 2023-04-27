@@ -28,7 +28,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($request->only(['email', 'password'],$request->boolean('remember')))) {
+        if(Auth::attempt($request->only(['email', 'password']),$request->remember_token)) {
             $request->session()->regenerate();
             return redirect()->intended('/admin');
         }

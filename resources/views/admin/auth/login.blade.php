@@ -43,6 +43,13 @@
 									</div>
 								</div>
 
+								<div class="d-flex align-items-center mb-3">
+									<label class="form-check">
+										<input type="checkbox" name="remember_token" class="form-check-input" />
+										<span class="form-check-label">Məni xatırla</span>
+									</label>
+								</div>
+
 								<div class="mb-3">
 									<button type="submit" class="btn btn-primary w-100">Giriş et</button>
 								</div>

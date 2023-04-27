@@ -66,6 +66,15 @@
 							</a>	
 						</li>
 
+						<li class="nav-item">
+							<a href="{{ route('about') }}" class="nav-link {{ (request()->segment(2) == 'about') ? 'active' : '' }}">
+								<i class="ph-gear"></i>
+								<span>
+									Haqqında
+								</span>
+							</a>	
+						</li>
+
 					</ul>
 				</div>
 				<!-- /main navigation -->

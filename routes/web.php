@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactMeController;
@@ -28,6 +29,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
                 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
                 Route::put('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
                 Route::get('contact-me', [ContactMeController::class, 'index'])->name('contactMe');
+                Route::get('about', [AboutController::class, 'index'])->name('about');
+                Route::post('about', [AboutController::class, 'updateOrCreate'])->name('about.updateOrCreate');
         });
 });
 

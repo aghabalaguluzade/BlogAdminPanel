@@ -45,7 +45,6 @@ class UserRepository
         $user->name = $data['name'];
         $user->email = $data['email'];
         
-        
         if(!empty($data['new_password']) && !empty($data['password'])){
             if (!Hash::check($data['password'], $user->password)) {
                 return false;
