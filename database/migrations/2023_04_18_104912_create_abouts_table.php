@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('images');
+            $table->string('img')->default('https://cdn-icons-png.flaticon.com/512/1946/1946429.png');
             $table->text('description');
             $table->timestamps();
         });

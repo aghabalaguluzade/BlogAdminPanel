@@ -30,27 +30,34 @@ class AboutRepository implements AboutRepositoryInterface
 
      if (!$about) {
          $about = new About();
-         $about->description  = $data['description'];
-         if (request()->hasFile('images')) {
-         $images = request()->file('images');
-         $directory = 'uploads/about/';
-         $imagePaths = [];
-     
-         foreach ($images as $image) {
-             $img_name = 'image_' . uniqid() . '.' . $image->getClientOriginalExtension();
-             $image->move($directory, $img_name);
-             $img_name = $img_name;
-               array_push($imagePaths, $img_name);
-         }
-         
-     
-         $about->images = json_encode($imagePaths);
-         $about->save();
-         return $about;
-     }
-     
-     }
-     
-    }
+         $about->description = $data['description'];
+         if (request()->hasFile('img')) {
+            $image = request()->file('img');
+            $directory = 'uploads/about/';
+            $img_name = 'image_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($directory, $img_name);
+            $img_name = $directory.$img_name;
+            $about['img'] = $img_name;
+        }
 
+        $about->save();
+        return $about;
+     }
+     
+        $about->description  = $data['description'];
+        if (request()->hasFile('img')) {
+                $image = request()->file('img');
+                $directory = 'uploads/about/';
+                $img_name = 'image_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                if(file_exists($about->img)) {
+                    unlink($about->img);
+                }
+                $image->move($directory, $img_name);
+                $img_name = $directory.$img_name;
+                $about->img = $img_name;
+            }
+
+            $about->save();
+            return $about;
+        }
 }

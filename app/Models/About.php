@@ -9,5 +9,5 @@ class About extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['images','description']; 
+    protected $fillable = ['img','description']; 
 }

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('slug');
             $table->integer('view_count')->default(0);
             $table->boolean('status')->default(false);
-            // $table->enum('status',['0','1'])->default('0');
             $table->timestamps();
             $table->softDeletes();
         });

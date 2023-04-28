@@ -23,8 +23,7 @@ class AboutRequest extends FormRequest
     {
         return [
             'description' => 'required',
-            'images' => 'max:4',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
+            'img' => 'image|mimes:jpeg,png,jpg,svg|max:2048'
         ];
     }
 }

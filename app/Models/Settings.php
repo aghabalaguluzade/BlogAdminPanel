@@ -9,5 +9,5 @@ class Settings extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['seo_title','seo_description','seo_keywords','logo','favicon','contact_email','contact_address','contact_phone','about_us','social_instagram','social_facebook','social_linkedin','social_twitter','social_youtube'];
+    protected $fillable = ['seo_title','seo_description','seo_keywords','logo','favicon','contact_email','contact_map','contact_phone','about_us','social_instagram','social_facebook','social_linkedin','social_twitter','social_youtube'];
 }

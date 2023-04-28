@@ -22,20 +22,20 @@ class SettingsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'seo_title' => ['string'],
-            'seo_description' => ['string'],
-            'seo_keywords' => ['string'],
-            'logo' => ['string','image', 'max:2048','mimes:png,jpg,jpeg,gif,jfif,webp'],
-            'favicon' => ['string','image', 'max:2048', 'mimes:png,jpg,jpeg,gif,jfif,webp'],
-            'contact_email' => ['string'],
-            'contact_map' => ['string'],
-            'contact_phone' => ['string'],
-            'about_us' => ['string'],
-            'social_instagram' => ['string','url'],
-            'social_facebook' => ['string','url'],
-            'social_linkedin' => ['string','url'],
-            'social_twitter' => ['string','url'],
-            'social_youtube' => ['string','url']
+            'seo_title' => ['nullable','string'],
+            'seo_description' => ['nullable','string'],
+            'seo_keywords' => ['nullable','string'],
+            'logo' => ['nullable','image', 'max:2048','mimes:png,jpg,jpeg,gif,jfif,webp'],
+            'favicon' => ['nullable','image', 'max:2048', 'mimes:png,jpg,jpeg,gif,jfif,webp'],
+            'contact_email' => ['nullable','string'],
+            'contact_map' => ['nullable','string'],
+            'contact_phone' => ['nullable','string'],
+            'about_us' => ['sometimes'],
+            'social_instagram' => ['nullable','string','url'],
+            'social_facebook' => ['nullable','string','url'],
+            'social_linkedin' => ['nullable','string','url'],
+            'social_twitter' => ['nullable','string','url'],
+            'social_youtube' => ['nullable','string','url']
         ];
     }
 }

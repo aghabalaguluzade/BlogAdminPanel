@@ -1,20 +1,38 @@
 @extends('admin.layouts.master')
 @section('title', 'Əlavə etmək')
 @section('links')
-	<script src="https://cdn.tiny.cloud/1/scvngxld7kolvh817hw9omsrym0g2d96ke02f1jb08mz6ih1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
+    <script src="https://cdn.tiny.cloud/1/scvngxld7kolvh817hw9omsrym0g2d96ke02f1jb08mz6ih1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <style>
+    .upload-image input{
+        display: block !important;
+        width: 158px !important;
+        height: 45px !important;
+        opacity: 0 !important;
+        overflow: hidden !important;
+
+    }
+    .upload-image {
+        cursor:pointer;
+        width: 158px;
+        height: 45px;
+        overflow:hidden;
+        position:relative;
+        display:inline-block;
+        /*background-color:#fff;*/
+        background-repeat: no-repeat;
+        background-image:
+            url('http://icons.iconarchive.com/icons/martz90/circle/512/camera-icon.png');
+        background-size:20px 20px;
+    }
+    </style>
 @endsection
 @section('header')
     Haqqında - <span class="fw-normal">Əlavə et</span>
 @endsection
 @section('content')
 				<!-- Content area -->
-				<div class="content">
-                {{-- {{ $about }} --}}
-    {{-- {{ $about->description }} --}}
-
-    @foreach ($about['images'] as $image)
-        {{-- <img src="{{ asset($image->images) }}" /> --}} {{ $image }}
-    @endforeach
+				<div class="content"> 
 
 					<!-- Form inputs -->
 					<div class="card">
@@ -26,19 +44,25 @@
                             <form action="{{ route('about.updateOrCreate') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4">
-                                    
+
+                                    {{-- <div class="col-lg-3">
+                                    <div class="">
+                                        <div class="upload-image">
+                                            <input type='file' class="imgInp" data-id='img{{$about?->id}}' />
+                                        </div>
+                                        <br>
+                                        <img id="img"  class="imgInpVal" src="" alt="your image" height="100" />
+                                    </div>
+                                    </div> --}}
+                            
                                     <div class="row mb-3">
                                         <label class="col-form-label col-lg-2">Haqqında Şəkili</label>
                                         <div class="col-lg-10">
-                                            <div class="input-group">
-                                                <input type="file" class="form-control" name="images[]" multiple="multiple" />
-                                                <span class="input-group-text">.jpg</span>
-                                                <span class="input-group-text">.jpeg</span>
-                                                <span class="input-group-text">.png</span>
-                                                <span class="input-group-text">.webp</span>
-                                                <span class="input-group-text">.svg</span>
-                                                <span class="input-group-text">.2mb</span>
-                                            </div>
+                                            <div class="upload-image">
+                                            <input type='file' class="imgInp" data-id='img{{$about?->id}}' name="img" />
+                                        </div>
+                                        <br>
+                                        <img id="img{{$about?->id}}"  class="imgInpVal" src="{{ asset($about?->img) }}" height="100" />
                                         </div>
                                     </div>
                                     
@@ -46,7 +70,8 @@
                                         <label class="col-form-label col-lg-2">Haqqında</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <textarea class="form-control" id="editor" style="height: 100px;" name="description"></textarea>
+                                                <textarea class="form-control" id="editor" style="height: 100px;" name="description">{!! $about?->description !!}</textarea>
+                                                {{-- <textarea class="form-control" id="editor" style="height: 100px;" name="description"></textarea> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -123,5 +148,25 @@
       content_css: useDarkMode ? 'dark' : 'default',
       content_style: 'body { font-family:Arial,Helvetica,sans-serif; font-size:14px }'
   });
+</script>
+<script>
+    function ImageSetter(input,target) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            target.attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(".imgInp").change(function(){
+        console.log('salam')
+        var imgDiv=$(this).data('id');
+        imgDiv=$('#' + imgDiv);
+        ImageSetter(this,imgDiv);
+    });
 </script>
 @endsection

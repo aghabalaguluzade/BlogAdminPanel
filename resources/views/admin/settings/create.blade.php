@@ -24,7 +24,7 @@
                                         <label class="col-form-label col-lg-2">Seo başlığı</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" placeholder="Placeholder" name="seo_title" value="" />
+                                                <input type="text" class="form-control" placeholder="Placeholder" name="seo_title" value="{{ $settings?->seo_title }}" />
                                                 <label>Seo başlığ daxil edin....</label>
                                             </div>
                                         </div>
@@ -34,7 +34,7 @@
                                         <label class="col-form-label col-lg-2">Seo açıqlama</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <textarea class="form-control" placeholder="Placeholder" style="height: 100px;" name="seo_description"></textarea>
+                                                <textarea class="form-control" placeholder="Placeholder" style="height: 100px;" name="seo_description">{{ $settings?->seo_description }}</textarea>
                                                 <label>Seo açıqlama</label>
                                             </div>
                                         </div>
@@ -44,11 +44,18 @@
                                         <label class="col-form-label col-lg-2">Seo keyword</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <textarea class="form-control" placeholder="Placeholder" style="height: 100px;" name="seo_keywords"></textarea>
+                                                <textarea class="form-control" placeholder="Placeholder" style="height: 100px;" name="seo_keywords">{{ $settings?->seo_keywords }}</textarea>
                                                 <label>Seo keyword</label>
                                             </div>
                                         </div>
 								    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-form-label col-lg-2">Çari Loqo</label>
+                                        <div class="col-lg-10">
+                                            <img src="{{ asset($settings?->logo) }}" alt="{{ $settings?->seo_title }}" /> 
+                                        </div>
+                                    </div>
                                     
                                     <div class="row mb-3">
                                         <label class="col-form-label col-lg-2">Loqo</label>
@@ -60,6 +67,13 @@
                                                 <span class="input-group-text">.png</span>
                                                 <span class="input-group-text">.webp</span>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-form-label col-lg-2">Çari Favicon</label>
+                                        <div class="col-lg-10">
+                                            <img src="{{ asset($settings?->favicon) }}" alt="{{ $settings?->seo_title }}" /> 
                                         </div>
                                     </div>
 
@@ -80,7 +94,7 @@
                                         <label class="col-form-label col-lg-2">E-Poçt</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" placeholder="Placeholder" name="contact_email" />
+                                                <input type="text" class="form-control" placeholder="Placeholder" name="contact_email" value="{{ $settings?->contact_email }}" />
                                                 <label>E-poçt daxil edin....</label>
                                             </div>
                                         </div>
@@ -101,7 +115,7 @@
                                         <div class="col-lg-10">
                                             <div class="form-floating">
                                                 <input type="tel" class="form-control" placeholder="Placeholder" name="contact_phone" />
-                                                <label>Seo başlığ daxil edin....</label>
+                                                <label>Telefon daxil edin....</label>
                                             </div>
                                         </div>
                                     </div>
