@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthRequest;
 use App\Repositories\Eloquent\UserRepository;
+use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -25,8 +27,19 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|max:255|email:rfc,dns',
-            'password' => 'required'
+            'password' => 'required',
+            'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
+                $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify',[
+                    'secret' => config('services.recaptcha.secret'),
+                    'response' => $value,
+                    'remoteip' => request()->ip(),
+                ]);
+                 if (!$g_response->json('success')) {
+                    $fail("Google Recaptcha xetasi");
+                };
+            }]
         ]);
+
 
         if(Auth::attempt($request->only(['email', 'password']),$request->remember_token)) {
             $request->session()->regenerate();

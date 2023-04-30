@@ -27,7 +27,7 @@
 													</div>
 												</div>
 
-												<div class="col-lg-6">
+												<div class="col-lg-12">
 													<div class="mb-3">
 														<label class="form-label">Çari Şifrə</label>
 														<input type="password" class="form-control" placeholder="Çari şifrəni daxil edin..." name="password" />

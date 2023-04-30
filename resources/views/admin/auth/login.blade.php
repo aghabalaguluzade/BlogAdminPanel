@@ -10,7 +10,7 @@
 				<!-- Content area -->
 				<div class="content d-flex justify-content-center align-items-center">
 					<!-- Login card -->
-					<form class="login-form" action="{{ route('login') }}" method="POST">
+					<form class="login-form" action="{{ route('login') }}" method="POST" id="login-recaptcha">
                          @include('admin.errors.errors')
                               @csrf
 						<div class="card mb-0">
@@ -50,8 +50,10 @@
 									</label>
 								</div>
 
+								<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
+
 								<div class="mb-3">
-									<button type="submit" class="btn btn-primary w-100">Giriş et</button>
+									<button type="button" class="btn btn-primary w-100" onClick="onClick(event)">Giriş et</button>
 								</div>
 
 							</div>
@@ -69,3 +71,14 @@
 		<!-- /main content -->
 
 	</div>
+	<script>
+		function onClick(e) {
+		e.preventDefault();
+		grecaptcha.ready(function() {
+			grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {action: 'login'}).then(function(token) {
+				document.getElementById("g-recaptcha-response").value = token;
+				document.getElementById("login-recaptcha").submit();
+			});
+		});
+		}
+  	</script>
