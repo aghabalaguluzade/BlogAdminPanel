@@ -26,7 +26,7 @@
     <div class="col-lg-6">
       <article class="card post-card h-100 border-0 bg-transparent">
         <div class="card-body">
-          <a class="d-block" href="blog-single.html" title="{{ $blog->title }}">
+          <a class="d-block" href="{{ route('blog',$blog->slug) }}" title="{{ $blog->title }}">
             <div class="post-image position-relative">
               <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') . $blog->img }}" alt="I work 5 hours a day, and I’ve never been more productive" width="970" height="500">
             </div>
@@ -34,7 +34,7 @@
           <ul class="card-meta list-inline mb-3">
             <li class="list-inline-item mt-2">
               <i class="ti ti-calendar-event"></i>
-              <span>12 Aug, 2020</span>
+              <span>{{ $blog->created_at }}</span>
             </li>
             <li class="list-inline-item mt-2">—</li>
             <li class="list-inline-item mt-2">
@@ -42,7 +42,7 @@
               <span>03 min read</span>
             </li>
           </ul>
-          <a class="d-block" href="blog-single.html" title="I work 5 hours a day, and I’ve never been more productive"><h3 class="mb-3 post-title">
+          <a class="d-block" href="{{ route('blog', $blog->slug) }}" title="{{ $blog->title }}"><h3 class="mb-3 post-title">
             {{ $blog->title }}
           </h3></a>
           <p>{!! Str::limit($blog->content,160,'...') !!}</p>
@@ -66,29 +66,35 @@
       </article>
     </div>
 
-    {{ links() }}
-
     @endforeach
 
-    
     <div class="col-12">
-      <!-- pagination -->
-      <nav class="text-center mt-5">
+    <!-- pagination -->
+    <nav class="text-center mt-5">
         <ul class="pagination justify-content-center border border-white rounded d-inline-flex">
-          <li class="page-item"><a class="page-link rounded w-auto px-4" href="blog.html" aria-label="Pagination Arrow">Prev</a></li>
-          <li class="page-item active ">
-            <a href="blog.html" class="page-link rounded">1</a>
-          </li>
-          <li class="page-item">
-            <a href="blog.html" class="page-link rounded">2</a>
-          </li>
-          <li class="page-item mt-2 mx-2">...</li>
-          <li class="page-item"><a class="page-link rounded" href="blog.html" aria-label="Pagination Arrow">16</a></li>
-          <li class="page-item"><a class="page-link rounded w-auto px-4" href="blog.html" aria-label="Pagination Arrow">Next</a></li>
+            @if ($blogs->currentPage() > 1)
+                <li class="page-item"><a class="page-link rounded w-auto px-4" href="{{ $blogs->previousPageUrl() }}" aria-label="Pagination Arrow">Prev</a></li>
+            @else
+                <li class="page-item disabled"><a class="page-link rounded w-auto px-4" href="#" aria-label="Pagination Arrow">Prev</a></li>
+            @endif
+
+            @for ($i = 1; $i <= $blogs->lastPage(); $i++)
+                <li class="page-item {{ ($blogs->currentPage() == $i) ? 'active' : '' }}">
+                    <a href="{{ $blogs->url($i) }}" class="page-link rounded">{{ $i }}</a>
+                </li>
+            @endfor
+
+            @if ($blogs->currentPage() < $blogs->lastPage())
+                <li class="page-item"><a class="page-link rounded w-auto px-4" href="{{ $blogs->nextPageUrl() }}" aria-label="Pagination Arrow">Next</a></li>
+            @else
+                <li class="page-item disabled"><a class="page-link rounded w-auto px-4" href="#" aria-label="Pagination Arrow">Next</a></li>
+            @endif
         </ul>
-      </nav>
-      
-    </div>
+    </nav>
+</div>
+
+
+
   </div>
 </div>
 @endsection

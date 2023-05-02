@@ -15,14 +15,26 @@ class BlogRepository implements BlogRepositoryInterface
         $this->model = $model;
     }
 
-    public function all()
+    public function paginateBlogs()
     {
-        return $this->model->all()->where('status', '0');
+        return $this->model->where('status', 0)->orderBy('created_at', 'desc')->paginate(1);
     }
 
-    public function find($id)
+    public function getBlogBySlug($slug)
     {
-        return $this->model->find($id);
+        return $this->model->where('slug', $slug)->first();
     }
 
+    public function getBlogRecent() {
+        return $this->model->orderBy('created_at', 'desc')->limit(6)->get();
+    }
+
+    public function readingTime($content) {
+        $words_per_minute = 200;
+        $words = str_word_count(strip_tags($content));
+        $minutes = floor($words / $words_per_minute);
+        $seconds = floor($words % $words_per_minute / ($words_per_minute / 60));
+        return "$minutes dəqiqə $seconds saniyə";
+    }
+    
 }

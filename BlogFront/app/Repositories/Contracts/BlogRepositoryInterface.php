@@ -4,7 +4,12 @@ namespace App\Repositories\Contracts;
 
 interface BlogRepositoryInterface
 {
-    public function all();
+    public function paginateBlogs();
 
-    public function find($id);
+    public function getBlogBySlug($slug);
+
+    public function getBlogRecent();
+
+    public function readingTime($content);
+    
 }
