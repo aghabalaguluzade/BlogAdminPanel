@@ -55,7 +55,7 @@ class AboutRepository implements AboutRepositoryInterface
                 $image->move($directory, $img_name);
                 $img_name = $directory.$img_name;
                 $about->img = $img_name;
-            }
+        }
 
             $about->save();
             return $about;

@@ -63,7 +63,7 @@
                          </div>
 
                          <div class="d-flex align-items-center justify-content-end">
-                              <button type="submit" class="btn btn-primary">Əlavə et <i class="ph-paper-plane-tilt ms-2"></i></button>
+                              <button type="submit" class="btn btn-primary">Redaktə et <i class="ph-paper-plane-tilt ms-2"></i></button>
                          </div>
                     </div>
                </form>

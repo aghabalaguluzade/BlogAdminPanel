@@ -11,5 +11,9 @@ interface BlogRepositoryInterface
     public function getBlogRecent();
 
     public function readingTime($content);
+
+    public function search();
+
+    public function getUser();
     
 }

@@ -15,7 +15,7 @@ $(document).ready(function () {
                '_method': 'PUT'
           },
              success: function (data) {
-                document.getElementById('status').innerHTML = data.status === true ? "Aktiv" : "Deaktiv";
+                document.getElementById(`status-${id}`).innerHTML = data.status === true ? "Aktiv" : "Deaktiv";
              },
              error : function(err) {
                console.log(err);

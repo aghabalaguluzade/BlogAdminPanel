@@ -80,8 +80,8 @@ class SettingsRepository implements SettingsRepositoryInterface
 
             $image->move($directory, $img_name_logo);
             $img_name_logo = $directory . $img_name_logo;
-            // $settings->logo = $img_name_logo;
-            $settings['logo'] = $img_name_logo;
+            $settings->logo = $img_name_logo;
+            // $settings['logo'] = $img_name_logo;
         }
  
         if (request()->hasFile("favicon")) {
@@ -95,8 +95,8 @@ class SettingsRepository implements SettingsRepositoryInterface
 
             $image->move($directory, $img_name_favicon);
             $img_name_favicon = $directory . $img_name_favicon;
-            // $settings->favicon = $img_name_favicon;
-            $settings['favicon'] = $img_name_favicon;
+            $settings->favicon = $img_name_favicon;
+            // $settings['favicon'] = $img_name_favicon;
             
         }
 

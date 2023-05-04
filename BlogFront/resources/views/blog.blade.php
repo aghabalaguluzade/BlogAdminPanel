@@ -6,13 +6,11 @@
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="mb-5">
-          <h3 class="h1 mb-4 post-title">{{ $blog->title }}</h3>
+          <h3 class="h1 mb-4 post-title">{{ $blog?->title }}</h3>
 
           <ul class="card-meta list-inline mb-2">
             <li class="list-inline-item mt-2">
-              <a href="author-single.html" class="card-meta-author" title="{{ $blog->title }}">
-                <img class="w-auto" src="{{ config('subdomain.path') . $blog->img }}" alt="{{ $blog->title }}" width="26" height="26"> by <span>Thomas Macaulay</span>
-              </a>
+                <img class="w-auto" src="{{ config('subdomain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
             </li>
             <li class="list-inline-item mt-2">—</li>
             <li class="list-inline-item mt-2">
@@ -22,14 +20,19 @@
             <li class="list-inline-item mt-2">—</li>
             <li class="list-inline-item mt-2">
               <i class="ti ti-calendar-event"></i>
-              <span>{{ $blog->created_at }}</span>
+              <span>{{ $blog?->created_at }}</span>
+            </li>
+            <li class="list-inline-item mt-2">—</li>
+            <li class="list-inline-item mt-2">
+              <i class="ti ti-eye"></i>
+              <span>{{ $blog?->view_count }}</span>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-lg-12">
         <div class="mb-5 text-center">
-          <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') . $blog->img }}" alt="{{ $blog->title }}" width="970" height="500">
+          <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') . $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
         </div>
       </div>
       <div class="col-lg-2 post-share-block order-1 order-lg-0 mt-5 mt-lg-0">
@@ -56,7 +59,7 @@
       </div>
       <div class="col-lg-8 post-content-block order-0 order-lg-2">
         <div class="content">
-          {!! $blog->content !!}
+          {!! $blog?->content !!}
         </div>
       </div>
     </div>
@@ -72,39 +75,41 @@
           <div class="row gy-5 gx-4 g-xl-5">
             
 
-            @foreach ($recent_blog as $blog)
-
+            @foreach ($recent_blog as $key => $blog)
             <div class="col-lg-6">
               <article class="card post-card h-100 border-0 bg-transparent">
                 <div class="card-body">
-                  <a class="d-block" href="{{ route('blog', $blog->slug) }}" title="{{ $blog->title }}">
+                  <a class="d-block" href="{{ route('blog', $blog?->slug) }}" title="{{ $blog?->title }}">
                     <div class="post-image position-relative">
-                      <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') . $blog->img }}" alt="{{ $blog->title }}" width="970" height="500">
+                      <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') . $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
                     </div>
                   </a>
                   <ul class="card-meta list-inline mb-3">
                     <li class="list-inline-item mt-2">
                       <i class="ti ti-calendar-event"></i>
-                      <span>{{ $blog->created_at }}</span>
+                      <span>{{ $blog?->created_at }}</span>
                     </li>
                     <li class="list-inline-item mt-2">—</li>
                     <li class="list-inline-item mt-2">
                       <i class="ti ti-clock"></i>
-                      <span>01 min read</span>
+                      <span>{{ $reading_time_recent_blog[$key] }}</span>
+                    </li>
+                    <li class="list-inline-item mt-2">—</li>
+                    <li class="list-inline-item mt-2">
+                      <i class="ti ti-eye"></i>
+                      <span>{{ $blog?->view_count }}</span>
                     </li>
                   </ul>
                   <a class="d-block" href="{{ route('blog', $blog->slug) }}"
-                    title="{{ $blog->title }}">
-                    <h3 class="mb-3 post-title">{{ $blog->title }}</h3>
+                    title="{{ $blog?->title }}">
+                    <h3 class="mb-3 post-title">{{ $blog?->title }}</h3>
                   </a>
-                  <p>{!! Str::limit($blog->content, 260, '...') !!}</p>
+                  <p>{!! Str::limit($blog?->content, 260, '...') !!}</p>
                 </div>
                 <div class="card-footer border-top-0 bg-transparent p-0">
                   <ul class="card-meta list-inline">
                     <li class="list-inline-item mt-2">
-                      <a href="author-single.html" class="card-meta-author" title="Read all posts by - Emma Hazel">
-                        <img class="w-auto" src="assets/images/author/emma-hazel.jpg" alt="Emma Hazel" width="26" height="26"> by <span>Emma</span>
-                      </a>
+                        <img class="w-auto" src="{{ config('subdomain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
                     </li>
                   </ul>
                 </div>

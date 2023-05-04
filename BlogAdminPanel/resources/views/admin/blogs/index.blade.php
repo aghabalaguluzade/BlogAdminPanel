@@ -12,7 +12,8 @@
 	<div class="content">
 		<!-- Pagination types -->
      <div class="card">
-          <div class="card-header d-flex justify-content-between">
+
+       <div class="card-header d-flex justify-content-between">
                <h5 class="mb-0">Bloq Siyahısı</h5>
                <a href="{{ route('blogs.create') }}">
                     <button type="button" class="btn btn-info my-1 me-2">
@@ -39,12 +40,12 @@
 
                               <tr class="odd" id="all">
                                    <td class="sorting_1" id="loop">{{ $loop->iteration }}</td>
-                                   <td id="title">{{ $blog->title }}</td>
+                                   <td id="title">{{ Str::limit($blog->title, 60, '...') }}</td>
                                    <td id="status_td">
                                    @if($blog->status == 0)
-                                        <span class="badge bg-danger bg-opacity-10 text-danger" id="status">Deaktiv</span>
+                                        <span class="badge bg-danger bg-opacity-10 text-primary" id="status-{{ $blog->id }}">Deaktiv</span>
                                    @else
-                                   <span class="badge bg-danger bg-opacity-10 text-success" id="status">Aktiv</span>
+                                   <span class="badge bg-danger bg-opacity-10 text-primary" id="status-{{ $blog->id }}">Aktiv</span>
                                    @endif
                                    </td>
                                    <td id="operation">
@@ -60,7 +61,7 @@
                                    <td>
                               </tr>
                               
-                         @endforeach    
+                         @endforeach  
                               
                          </tbody>
                     </table>
@@ -73,5 +74,4 @@
 @section('scripts')
      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
      <script src="{{ asset('ajax/blogs.js') }}"></script>
-
 @endsection

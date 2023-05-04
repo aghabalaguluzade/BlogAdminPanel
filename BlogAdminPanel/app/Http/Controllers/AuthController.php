@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthRequest;
+use App\Http\Requests\UserProfileRequest;
 use App\Repositories\Eloquent\UserRepository;
 use Closure;
 use Illuminate\Support\Facades\Auth;
@@ -68,17 +69,10 @@ class AuthController extends Controller
         return view('admin.auth.profile', compact('user'));
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfile(UserProfileRequest $request)
     {
-        $data = $request->validate([
-            'name' => ['string', 'max:255'],
-            'password' => ['nullable', 'string'],
-            'email' => ['string', 'email', 'max:255', 'unique:users,email,'.auth()->id()],
-            'new_password' => ['nullable', 'string', 'min:7',],
-            'repeat_password' => ['same:new_password']
-        ]);
 
-        $profile = $this->userRepository->updateProfile(Auth::user()->id, $data);
+        $profile = $this->userRepository->updateProfile(Auth::user()->id, $request->validated());
 
         return redirect()->route('profile')->with($profile  ? "success" : "error", true);
     }

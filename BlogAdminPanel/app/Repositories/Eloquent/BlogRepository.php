@@ -17,7 +17,7 @@ class BlogRepository implements BlogRepositoryInterface
 
     public function all()
     {
-        return $this->model->all();
+        return $this->model->latest()->get();
     }
 
     public function find($id)
@@ -55,7 +55,7 @@ class BlogRepository implements BlogRepositoryInterface
             
             $image->move($directory, $img_name);
             $img_name = $directory . $img_name;
-            $blog['img'] = $img_name;
+            $data['img'] = $img_name;
         }
         
         return $blog->update($data);

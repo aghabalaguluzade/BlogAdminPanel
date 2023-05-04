@@ -104,7 +104,7 @@
                                         <label class="col-form-label col-lg-2">Ünvan</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" placeholder="Placeholder" name="contact_map" />
+                                                <input type="text" class="form-control" placeholder="Placeholder" name="contact_map" value="{{ $settings?->contact_map }}" />
                                                 <label>Ünvan daxil edin....</label>
                                             </div>
                                         </div>
@@ -114,7 +114,7 @@
                                         <label class="col-form-label col-lg-2">Telefon</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="tel" class="form-control" placeholder="Placeholder" name="contact_phone" />
+                                                <input type="tel" class="form-control" placeholder="Placeholder" name="contact_phone" value="{{ $settings?->contact_phone }}" />
                                                 <label>Telefon daxil edin....</label>
                                             </div>
                                         </div>
@@ -124,7 +124,7 @@
                                         <label class="col-form-label col-lg-2">Haqqında</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <textarea class="form-control" id="editor" style="height: 100px;" name="about_us"></textarea>
+                                                <textarea class="form-control" id="editor" style="height: 100px;" name="about_us">{!! $settings?->about_us !!}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                                         <label class="col-form-label col-lg-2">İnstagram</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_instagram" />
+                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_instagram" value="{{ $settings?->social_instagram }}" />
                                                 <label>İnstagram daxil edin....</label>
                                             </div>
                                         </div>
@@ -143,7 +143,7 @@
                                         <label class="col-form-label col-lg-2">Facebook</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_facebook" />
+                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_facebook" value="{{ $settings?->social_facebook }}" />
                                                 <label>Facebook daxil edin....</label>
                                             </div>
                                         </div>
@@ -153,7 +153,7 @@
                                         <label class="col-form-label col-lg-2">Linkedin</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_linkedin" />
+                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_linkedin" value="{{ $settings?->social_linkedin }}" />
                                                 <label>Linkedin daxil edin....</label>
                                             </div>
                                         </div>
@@ -163,7 +163,7 @@
                                         <label class="col-form-label col-lg-2">Twitter</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_twitter" />
+                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_twitter" value="{{ $settings?->social_twitter }}" />
                                                 <label>Twitter daxil edin....</label>
                                             </div>
                                         </div>
@@ -173,7 +173,7 @@
                                         <label class="col-form-label col-lg-2">Youtube</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_youtube" />
+                                                <input type="url" class="form-control" placeholder="Placeholder" name="social_youtube" value="{{ $settings?->social_youtube }}" />
                                                 <label>Youtube daxil edin....</label>
                                             </div>
                                         </div>

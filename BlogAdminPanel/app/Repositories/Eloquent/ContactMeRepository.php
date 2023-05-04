@@ -16,7 +16,7 @@ class ContactMeRepository implements ContactMeRepositoryInterface
 
     public function all()
     {
-        return $this->model->all();
+        return $this->model->latest()->get();
     }
 
     public function find($id)

@@ -33,7 +33,7 @@
                                    <td class="sorting_1" id="loop">{{ $loop?->iteration }}</td>
                                    <td id="title">{{ $contact?->name }}</td>
                                    <td id="title">{{ $contact?->email }}</td>
-                                   <td id="title">{{ Str::limit($contact?->message,10)}},'...'</td>
+                                   <td id="title">{{ $contact?->message }}</td>
                                    <td id="operation">
                                         <button type="button" class="btn btn-danger my-1 me-2" onclick="blog_delete({{ $contact?->id }})">Sil</button>
                                    <td>
@@ -52,5 +52,4 @@
 @section('scripts')
      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
      <script src="{{ asset('ajax/blogs.js') }}"></script>
-
 @endsection

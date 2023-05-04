@@ -45,6 +45,18 @@ class UserRepository
         $user->name = $data['name'];
         $user->email = $data['email'];
         
+        if (request()->hasFile('img') && request()->file('img')->isValid()) {
+            $image = request()->file('img');
+            $directory = 'uploads/settings/';
+            $img_name = 'profile' . '.' . $image->getClientOriginalExtension();
+            if(file_exists($user->img)) {
+                unlink($user->img);
+            }
+            $image->move($directory, $img_name);
+            $img_name = $directory.$img_name;
+            $user->img = $img_name;
+        }
+
         if(!empty($data['new_password']) && !empty($data['password'])){
             if (!Hash::check($data['password'], $user->password)) {
                 return false;
@@ -52,9 +64,7 @@ class UserRepository
             }
             $user->password = bcrypt($data['new_password']);
         }
-
-            
-
+        
         $user->save();
         return $user;
     }

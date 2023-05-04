@@ -30,20 +30,7 @@
                 <a class="nav-link" href="{{ route('blogs') }}">Bloq</a>
               </li>
               <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('contact') }}">Əlaqə</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="author.html">Author</a></li>
-                  <li><a class="dropdown-item" href="author-single.html">Author Single</a></li>
-                  <li><a class="dropdown-item" href="tags.html">Tags</a></li>
-                  <li><a class="dropdown-item" href="tag-single.html">Tag Single</a></li>
-                  <li><a class="dropdown-item" href="categories.html">Categories</a></li>
-                  <li><a class="dropdown-item" href="categories-single.html">Category Single</a></li>
-                  <li><a class="dropdown-item" href="404-page.html">404 Page</a></li>
-                  <li><a class="dropdown-item" href="privacy.html">Privacy</a></li>
-                </ul>
+                <a class="nav-link" href="{{ route('contact.index') }}">Əlaqə</a>
               </li>
             </ul>
             
@@ -70,44 +57,8 @@
     <span class="ti ti-x text-primary"></span>
   </div>
   
-  <input type="text" id="js-search-input" placeholder="Type to search blog.." aria-label="search-query">
+  <form action="{{ route('search') }}" method="GET">
+    <input type="text" id="js-search-input" placeholder="Axtarış et..." aria-label="search-query" name="search" />
+  </form>
 
-  <div class="mt-4 card-meta">
-    <p class="h4 mb-3">See posts by tags</p>
-    <ul class="card-meta-tag list-inline">
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">Life</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">Lifestyle</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">Lighting</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">Machine</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">Startups</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">Work</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="mt-4 card-meta">
-    <p class="h4 mb-3">See posts by categories</p>
-    <ul class="card-meta-tag list-inline">
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="categorie-single.html">AI</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="categorie-single.html">Earth</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="categorie-single.html">Tech</a>
-      </li>
-    </ul>
-  </div>
 </div>
