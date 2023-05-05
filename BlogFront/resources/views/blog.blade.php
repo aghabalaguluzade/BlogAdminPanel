@@ -10,7 +10,7 @@
 
           <ul class="card-meta list-inline mb-2">
             <li class="list-inline-item mt-2">
-                <img class="w-auto" src="{{ config('subdomain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
+                <img class="w-auto" src="{{ config('domain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
             </li>
             <li class="list-inline-item mt-2">—</li>
             <li class="list-inline-item mt-2">
@@ -32,7 +32,7 @@
       </div>
       <div class="col-lg-12">
         <div class="mb-5 text-center">
-          <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') . $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
+          <img class="w-100 h-auto rounded" src="{{ config('domain.path') .'blogs/'. $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
         </div>
       </div>
       <div class="col-lg-2 post-share-block order-1 order-lg-0 mt-5 mt-lg-0">
@@ -81,7 +81,7 @@
                 <div class="card-body">
                   <a class="d-block" href="{{ route('blog', $blog?->slug) }}" title="{{ $blog?->title }}">
                     <div class="post-image position-relative">
-                      <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') . $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
+                      <img class="w-100 h-auto rounded" src="{{ config('domain.path') .'blogs/'. $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
                     </div>
                   </a>
                   <ul class="card-meta list-inline mb-3">

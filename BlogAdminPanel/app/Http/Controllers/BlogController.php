@@ -39,7 +39,7 @@ class BlogController extends Controller
     {   
         $data = $request->validated();
         $blog = $this->blogRepository->create($data);
-
+        
         return redirect()->back()->with($blog  ? "success" : "error", true);
     }
 

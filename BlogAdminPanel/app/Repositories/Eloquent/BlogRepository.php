@@ -28,13 +28,14 @@ class BlogRepository implements BlogRepositoryInterface
     public function create(array $data)
     {
         $image = $data['img'];
-        $directory = 'uploads/blogs/';
+        $directory = config('apidomain.path') .'/blogs';
         $img_name = Str::slug($data['title']) . "." . $image->getClientOriginalExtension();
         $image->move($directory, $img_name);
-        $img_name = $directory . $img_name;
+        $img_name = $img_name;
 
         $data['img'] = $img_name;
         $data['slug'] = Str::slug($data['title']);
+
 
         return $this->model->create($data);
     }
@@ -46,7 +47,7 @@ class BlogRepository implements BlogRepositoryInterface
     
         if(request()->hasFile("img")) {
             $image = request()->file('img');
-            $directory = 'uploads/blogs/';
+            $directory = config('apidomain.path') .'/blogs';
             $img_name = Str::slug($data['title']) . '.' . $image->getClientOriginalExtension();
             
             if(file_exists($blog->img)) {
@@ -54,7 +55,7 @@ class BlogRepository implements BlogRepositoryInterface
             }
             
             $image->move($directory, $img_name);
-            $img_name = $directory . $img_name;
+            $img_name = $img_name;
             $data['img'] = $img_name;
         }
         

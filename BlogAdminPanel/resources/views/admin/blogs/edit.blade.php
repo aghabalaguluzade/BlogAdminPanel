@@ -44,7 +44,7 @@
                               <span class="col-form-label col-lg-2">Çari foto</span>
                               <div class="col-lg-10">
                                    <div class="form-floating">
-                                        <img src="{{ asset($blog->img) }}" alt="{{ $blog->title }}" style="width:150px; height:150px;" />
+                                        <img src="{{ config('apidomain.url') . 'blogs/' . $blog->img }}" alt="{{ $blog->title }}" style="width:150px; height:150px;" />
                                    </div>
                               </div>
                          </div>

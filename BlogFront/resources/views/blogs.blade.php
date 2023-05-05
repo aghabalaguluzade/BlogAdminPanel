@@ -22,13 +22,13 @@
   <div class="row gy-5 gx-4 g-xl-5">
 
     @foreach ($blogs as $key => $blog)
-        
+    
     <div class="col-lg-6">
       <article class="card post-card h-100 border-0 bg-transparent">
         <div class="card-body">
           <a class="d-block" href="{{ route('blog',$blog?->slug) }}" title="{{ $blog?->title }}">
             <div class="post-image position-relative">
-              <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') . $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
+                <img class="w-100 h-auto rounded" src="{{ config('domain.path') . 'blogs/' . $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
             </div>
           </a>
           <ul class="card-meta list-inline mb-3">
@@ -55,7 +55,7 @@
         <div class="card-footer border-top-0 bg-transparent p-0">
           <ul class="card-meta list-inline">
             <li class="list-inline-item mt-2">
-                <img class="w-auto" src="{{ config('subdomain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
+                <img class="w-auto" src="{{ config('domain.path') .'settings/'. $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
             </li>
           </ul>
         </div>
