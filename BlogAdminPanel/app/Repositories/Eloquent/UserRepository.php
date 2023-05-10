@@ -47,7 +47,7 @@ class UserRepository
         
         if (request()->hasFile('img') && request()->file('img')->isValid()) {
             $image = request()->file('img');
-            $directory = 'uploads/settings/';
+            $directory = config('apidomain.path') .'/settings';
             $img_name = 'profile' . '.' . $image->getClientOriginalExtension();
             if(file_exists($user->img)) {
                 unlink($user->img);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\BlogRequest;
 use App\Http\Resources\Api\V1\BlogResource;
 use App\Models\Blog;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -23,15 +24,7 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
-        $data = $request->validated();
-        $image = $request->file("img");
-        $directory = config('subdomain.path') . "uploads/blogs/";
-        $image_name = Str::slug($request->title). '.' . $image->getClientOriginalExtension();
-        $image->move($directory,$image_name);
-        $image_name = $directory.$image_name;
-        $data["img"] = $image_name;
-        $blog = Blog::create($data);
-        return new BlogResource($blog);
+        //
     }
 
     /**
@@ -47,24 +40,7 @@ class BlogController extends Controller
      */
     public function update(BlogRequest $request, Blog $blog)
     {
-
-        $blog->update($request->validate());
-
-        if($request->hasFile("img")) {
-            $data = $request->validated();
-            $image = $request->file("img");
-            $directory = config('subdomain.path') . "uploads/blogs/";
-            $image_name = Str::slug($request->title). '.' . $image->getClientOriginalExtension();
-            if(file_exists($blog->img)) {
-                unlink($blog->img);
-            };
-            $image->move($directory,$image_name);
-            $image_name = $directory.$image_name;
-            $data["img"] = $image_name;
-            $blog->update($data);
-        }
-
-        return new BlogResource($blog);
+        //
     }
 
     /**

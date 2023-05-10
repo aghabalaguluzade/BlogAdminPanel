@@ -33,7 +33,7 @@ class AboutRepository implements AboutRepositoryInterface
          $about->description = $data['description'];
          if (request()->hasFile('img')) {
             $image = request()->file('img');
-            $directory = 'uploads/about/';
+            $directory = config('apidomain.path') .'/about';
             $img_name = 'image_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $image->move($directory, $img_name);
             $img_name = $directory.$img_name;
@@ -47,7 +47,7 @@ class AboutRepository implements AboutRepositoryInterface
         $about->description  = $data['description'];
         if (request()->hasFile('img')) {
                 $image = request()->file('img');
-                $directory = 'uploads/about/';
+                $directory = config('apidomain.path') .'/about';
                 $img_name = 'image_' . uniqid() . '.' . $image->getClientOriginalExtension();
                 if(file_exists($about->img)) {
                     unlink($about->img);

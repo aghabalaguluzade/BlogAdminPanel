@@ -19,7 +19,7 @@
           <div class="card-body">
             <a class="d-block" href="{{ route('blog', $blog?->slug) }}" title="{{ $blog?->title }}">
               <div class="post-image position-relative"> 
-                <img class="w-100 h-auto rounded" src="{{ config('domain.path') .'blogs/'. $blog?->img }}" alt="{{ $blog?->title }}" style="width:396px !important; height:204px !important" />
+                <img class="w-100 h-auto rounded" src="{{ config('apidomain.path') .'blogs/'. $blog?->img }}" alt="{{ $blog?->title }}" style="width:396px !important; height:204px !important" />
               </div>
             </a>
             <ul class="card-meta list-inline mb-3">

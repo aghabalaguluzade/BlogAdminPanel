@@ -24,7 +24,7 @@
     <div class="py-5 my-3">
       <div class="row g-4 justify-content-center text-center">
         <div class="col-lg-6 image-grid-1">
-          <img class="w-100 h-auto rounded" src="{{ config('subdomain.path') .'/about/'. $about?->img }}" width="620" height="346">
+          <img class="w-100 h-auto rounded" src="{{ config('apidomain.path') .'/about/'. $about?->img }}" width="620" height="346">
         </div>
       </div>
     </div>

@@ -62,7 +62,10 @@
                                             <input type='file' class="imgInp" data-id='img{{$about?->id}}' name="img" />
                                         </div>
                                         <br>
-                                        <img id="img{{$about?->id}}"  class="imgInpVal" src="{{ asset($about?->img) }}" height="100" />
+                                        @if($about->img)
+                                        <img id="img{{$about?->id}}"  class="imgInpVal" src="{{ config('apidomain.url') .'about/'. $about?->img }}" height="100" />
+                                        @endif
+                                        <img id="img{{$about?->id}}"  class="imgInpVal" src="" height="100" />
                                         </div>
                                     </div>
                                     

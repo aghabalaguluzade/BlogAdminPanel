@@ -32,7 +32,7 @@ class SettingsRepository implements SettingsRepositoryInterface
             $settings = new Settings;
             if (request()->hasFile("logo")) {
                 $image = request()->file('logo');
-                $directory = 'uploads/settings/';
+                $directory = config('apidomain.path') .'/settings';
                 $img_name_logo = uniqid(true) . 'logo' . '.' . $image->getClientOriginalExtension();
                 $image->move($directory, $img_name_logo);
                 $img_name_logo = $directory . $img_name_logo;
@@ -42,7 +42,7 @@ class SettingsRepository implements SettingsRepositoryInterface
      
             if (request()->hasFile("favicon")) {
                 $image = request()->file('favicon');
-                $directory = 'uploads/settings/';
+                $directory = config('apidomain.path') .'/settings';
                 $img_name_favicon = uniqid(true) . 'favicon' . '.' . $image->getClientOriginalExtension();
                 $image->move($directory, $img_name_favicon);
                 $img_name_favicon = $directory . $img_name_favicon;
@@ -71,7 +71,7 @@ class SettingsRepository implements SettingsRepositoryInterface
 
         if (request()->hasFile("logo")) {
             $image = request()->file('logo');
-            $directory = 'uploads/settings/';
+            $directory = config('apidomain.path') .'/settings';
             $img_name_logo = uniqid(true) . 'logo' . '.' . $image->getClientOriginalExtension();
 
             if (file_exists($settings?->logo)) {
@@ -86,7 +86,7 @@ class SettingsRepository implements SettingsRepositoryInterface
  
         if (request()->hasFile("favicon")) {
             $image = request()->file('favicon');
-            $directory = 'uploads/settings/';
+            $directory = config('apidomain.path') .'/settings';
             $img_name_favicon = uniqid(true) . 'favicon' . '.' . $image->getClientOriginalExtension();
 
             if (file_exists($settings?->favicon)) {

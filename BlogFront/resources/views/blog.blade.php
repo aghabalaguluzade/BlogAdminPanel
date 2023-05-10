@@ -10,7 +10,7 @@
 
           <ul class="card-meta list-inline mb-2">
             <li class="list-inline-item mt-2">
-                <img class="w-auto" src="{{ config('domain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
+                <img class="w-auto" src="{{ config('apidomain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
             </li>
             <li class="list-inline-item mt-2">—</li>
             <li class="list-inline-item mt-2">
@@ -81,7 +81,7 @@
                 <div class="card-body">
                   <a class="d-block" href="{{ route('blog', $blog?->slug) }}" title="{{ $blog?->title }}">
                     <div class="post-image position-relative">
-                      <img class="w-100 h-auto rounded" src="{{ config('domain.path') .'blogs/'. $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
+                      <img class="w-100 h-auto rounded" src="{{ config('apidomain.path') .'blogs/'. $blog?->img }}" alt="{{ $blog?->title }}" width="970" height="500">
                     </div>
                   </a>
                   <ul class="card-meta list-inline mb-3">
@@ -109,7 +109,7 @@
                 <div class="card-footer border-top-0 bg-transparent p-0">
                   <ul class="card-meta list-inline">
                     <li class="list-inline-item mt-2">
-                        <img class="w-auto" src="{{ config('subdomain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
+                        <img class="w-auto" src="{{ config('apidomain.path') .'settings/'. $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
                     </li>
                   </ul>
                 </div>

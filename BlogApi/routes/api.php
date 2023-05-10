@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AboutController;
 use App\Http\Controllers\Api\V1\BlogController;
+use App\Http\Controllers\Api\V1\ContactController;
+use App\Http\Controllers\Api\V1\SettingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-// Route::get('/', [BlogController::class, 'home'])->name('home');
-// Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
-// Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blog');
-// Route::get('/search', [BlogController::class, 'search'])->name('search');
-// Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-// Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-// Route::get('/about', [AboutController::class, 'index'])->name('about');
-
-Route::apiResource('/blogs', BlogController::class);
+Route::apiResource('blogs', BlogController::class);
+Route::apiResource('about', AboutController::class);
+Route::apiResource('contact', ContactController::class);
+Route::apiResource('settings', SettingsController::class);
