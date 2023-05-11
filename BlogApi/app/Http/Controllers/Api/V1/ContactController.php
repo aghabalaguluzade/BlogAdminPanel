@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactMeRequest;
 use App\Http\Resources\Api\V1\ContactResource;
 use App\Models\ContactMe;
 use Illuminate\Http\Request;
@@ -20,9 +21,9 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ContactMeRequest $request)
     {
-        //
+        return new ContactResource(ContactMe::create($request->validated()));
     }
 
     /**

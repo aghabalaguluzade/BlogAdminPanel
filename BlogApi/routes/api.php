@@ -25,5 +25,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('blogs', BlogController::class);
 Route::apiResource('about', AboutController::class);
-Route::apiResource('contact', ContactController::class);
+Route::apiResource('contact', ContactController::class)->middleware('token');
 Route::apiResource('settings', SettingsController::class);

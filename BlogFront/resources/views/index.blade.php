@@ -47,7 +47,7 @@
           <div class="card-footer border-top-0 bg-transparent p-0">
             <ul class="card-meta list-inline">
               <li class="list-inline-item mt-2">
-                  <img class="w-auto" src="{{ config('domain.path') .'settings/'. $user?->img }}" alt="Thomas Macaulay" width="26" height="26"><span>{{ $user?->name }}</span>
+                  <img class="w-auto" src="{{ config('apidomain.path') .'settings/'. $user?->img }}" width="26" height="26"><span>{{ $user?->name }}</span>
               </li>
               <li class="list-inline-item mt-2">•</li>
             </ul>

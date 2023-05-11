@@ -10,7 +10,7 @@
 
           <ul class="card-meta list-inline mb-2">
             <li class="list-inline-item mt-2">
-                <img class="w-auto" src="{{ config('apidomain.path') . $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
+                <img class="w-auto" src="{{ config('apidomain.path') .'settings/'. $user?->img }}" alt="{{ $user?->name }}" width="26" height="26"><span>{{ $user?->name }}</span>
             </li>
             <li class="list-inline-item mt-2">—</li>
             <li class="list-inline-item mt-2">
