@@ -38,6 +38,15 @@
 								</span>
 							</a>
 						</li>
+
+						<li class="nav-item">
+							<a href="{{ route('categories.index') }}" class="nav-link {{ (request()->segment(2) == 'categories') ? 'active' : '' }}">
+								<i class="ph-article"></i>
+								<span>
+									Kateqoriya
+								</span>
+							</a>	
+						</li>
 						
 						<li class="nav-item">
 							<a href="{{ route('blogs.index') }}" class="nav-link {{ (request()->segment(2) == 'blogs') ? 'active' : '' }}">

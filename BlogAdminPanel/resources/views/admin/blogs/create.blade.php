@@ -52,6 +52,21 @@
                                         </div>
                                     </div>
 
+
+                                    <div class="row mb-3">
+                                        <label class="col-form-label col-lg-2">Kateqoriya</label>
+                                        <div class="col-lg-10">
+                                            <div class="input-group">
+                                            @foreach ($categories as $category)
+                                                <select name="category_id">
+                                                    <option disabled selected>Kateqoriya seç...</option>
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                </select>
+                                            @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="d-flex align-items-center justify-content-end">
 										<button type="submit" class="btn btn-primary">Əlavə et <i class="ph-paper-plane-tilt ms-2"></i></button>
 									</div>

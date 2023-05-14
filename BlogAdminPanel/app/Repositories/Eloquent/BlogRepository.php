@@ -3,16 +3,19 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Repositories\Contracts\BlogRepositoryInterface;
 
 class BlogRepository implements BlogRepositoryInterface
 {
     protected $model;
+    protected $categories;
 
-    public function __construct(Blog $model)
+    public function __construct(Blog $model, Category $categories)
     {
         $this->model = $model;
+        $this->categories = $categories;
     }
 
     public function all()
@@ -76,5 +79,11 @@ class BlogRepository implements BlogRepositoryInterface
         return $blog;
     }
 
+    public function categories()
+    {
+        $categories = $this->categories->select('id','name')->get();
+        
+        return $categories;
+    }
 
 }

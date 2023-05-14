@@ -19,8 +19,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = $this->blogRepository->all();
-
-        return view('admin.blogs.index', compact('blogs'));
+        $categories = $this->blogRepository->categories();
+        return view('admin.blogs.index', compact('blogs'))->with('categories', $categories);
     }
 
     public function show($id)
@@ -32,7 +32,9 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('admin.blogs.create');
+        $categories = $this->blogRepository->categories();
+
+        return view('admin.blogs.create')->with('categories', $categories);
     }
 
     public function store(BlogRequest $request)
@@ -45,7 +47,8 @@ class BlogController extends Controller
 
     public function edit($id) {
         $blog = $this->blogRepository->find($id);
-        return view('admin.blogs.edit',compact('blog'));
+        $categories = $this->blogRepository->categories();
+        return view('admin.blogs.edit',compact('blog'))->with('categories', $categories);
     }
 
     public function update(BlogRequest $request, $id)

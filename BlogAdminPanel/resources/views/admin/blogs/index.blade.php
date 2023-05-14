@@ -30,6 +30,7 @@
                               <tr>
                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">#</th>
                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">Başlıq</th>
+                                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">Kateqoriya</th>
                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Job Title: activate to sort column ascending">Status</th>
                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Job Title: activate to sort column ascending">Əməliyyatlar</th>
                               </tr>
@@ -37,10 +38,11 @@
                          <tbody>
 
                          @foreach ($blogs as $blog)
-
+               
                               <tr class="odd" id="all">
                                    <td class="sorting_1" id="loop">{{ $loop->iteration }}</td>
                                    <td id="title">{{ Str::limit($blog->title, 60, '...') }}</td>
+                                   <td id="title">{{ $blog->category->name }}</td>
                                    <td id="status_td">
                                    @if($blog->status == 0)
                                         <span class="badge bg-danger bg-opacity-10 text-primary" id="status-{{ $blog->id }}">Deaktiv</span>

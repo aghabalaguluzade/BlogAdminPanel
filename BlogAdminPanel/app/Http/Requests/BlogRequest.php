@@ -24,9 +24,13 @@ class BlogRequest extends FormRequest
         if(request()->routeIs('blogs.store')) {
             $imgValidation = 'required';
             $statusValidation = 'nullable';
+            $categoryValidation = 'required';
+            $tagValidation = 'sometimes';
         }elseif(request()->routeIs('blogs.update')) {
             $imgValidation = 'sometimes';
             $statusValidation = 'boolean';
+            $categoryValidation = 'sometimes';
+            $tagValidation = 'sometimes';
         }
 
         return [
@@ -34,7 +38,9 @@ class BlogRequest extends FormRequest
             'content' => ['required','string'],
             'img' => [$imgValidation, 'image', 'max:2048', 'mimes:png,jpg,jpeg,gif,jfif,webp'],
             'slug' => ['string'],
-            'status' => [$statusValidation]
+            'status' => [$statusValidation],
+            'category_id' => [$categoryValidation,'integer'],
+            'tag_id' => [$tagValidation,'array'],
         ];
     }
 }
