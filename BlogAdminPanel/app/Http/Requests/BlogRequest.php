@@ -40,7 +40,8 @@ class BlogRequest extends FormRequest
             'slug' => ['string'],
             'status' => [$statusValidation],
             'category_id' => [$categoryValidation,'integer'],
-            'tag_id' => [$tagValidation,'array'],
+            'tags' => 'array',
+            'tags.*' => 'exists:tags,id',
         ];
     }
 }

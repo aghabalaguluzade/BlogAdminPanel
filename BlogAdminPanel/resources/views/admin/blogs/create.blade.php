@@ -1,6 +1,9 @@
 @extends('admin.layouts.master')
 @section('title', 'Əlavə etmək')
 @section('links')
+    <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script src="https://cdn.tiny.cloud/1/scvngxld7kolvh817hw9omsrym0g2d96ke02f1jb08mz6ih1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 @endsection
 @section('header')
@@ -57,12 +60,26 @@
                                         <label class="col-form-label col-lg-2">Kateqoriya</label>
                                         <div class="col-lg-10">
                                             <div class="input-group">
-                                            @foreach ($categories as $category)
                                                 <select name="category_id">
                                                     <option disabled selected>Kateqoriya seç...</option>
+                                            @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                </select>
                                             @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-form-label col-lg-2">Taq</label>
+                                        <div class="col-lg-10">
+                                            <div class="input-group">
+                                                <select name="tags[]" class="tags-selector">
+                                                    <option disabled selected>Taq seç...</option>
+                                            @foreach ($tags as $tag)
+                                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                            @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -80,6 +97,11 @@
 				<!-- content area -->
 @endsection
 @section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.tags-selector').select2();
+    });
+</script>
 <script>
   var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   tinymce.init({

@@ -18,8 +18,9 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = $this->blogRepository->all();
+        // $blogs = $this->blogRepository->all();
         $categories = $this->blogRepository->categories();
+        $blogs = $this->blogRepository->getBlogsWithTags();
         return view('admin.blogs.index', compact('blogs'))->with('categories', $categories);
     }
 
@@ -33,8 +34,9 @@ class BlogController extends Controller
     public function create()
     {
         $categories = $this->blogRepository->categories();
+        $tags = $this->blogRepository->getAllTags();
 
-        return view('admin.blogs.create')->with('categories', $categories);
+        return view('admin.blogs.create')->with('categories', $categories)->with('tags', $tags);
     }
 
     public function store(BlogRequest $request)
@@ -42,13 +44,25 @@ class BlogController extends Controller
         $data = $request->validated();
         $blog = $this->blogRepository->create($data);
         
+        if ($blog) {
+            // Blog başarıyla oluşturuldu, şimdi etiketleri ekleyelim
+            if ($request->has('tags')) {
+                $tagIds = $request->input('tags');
+                $this->blogRepository->attachTags($blog, $tagIds);
+            }
+            return redirect()->back()->with($blog  ? "success" : "error", true);
+        } else {
+            return redirect()->back()->with('error', true);
+        }
+
         return redirect()->back()->with($blog  ? "success" : "error", true);
     }
 
     public function edit($id) {
         $blog = $this->blogRepository->find($id);
         $categories = $this->blogRepository->categories();
-        return view('admin.blogs.edit',compact('blog'))->with('categories', $categories);
+        $tags = $this->blogRepository->getAllTags();
+        return view('admin.blogs.edit',compact('blog'))->with('categories', $categories)->with('tags', $tags);
     }
 
     public function update(BlogRequest $request, $id)
@@ -56,6 +70,11 @@ class BlogController extends Controller
         $data = $request->validated();
 
         $this->blogRepository->update($data, $id);
+        
+        if ($request->has('tags')) {
+            $tagIds = $request->input('tags');
+            $this->blogRepository->syncTags($id, $tagIds);
+        }
 
         return redirect()->route('blogs.index');
     }

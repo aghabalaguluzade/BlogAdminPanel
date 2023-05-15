@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Models\Blog;
+
 interface BlogRepositoryInterface
 {
     public function all();
@@ -17,4 +19,13 @@ interface BlogRepositoryInterface
     public function updateStatus(array $id, $data);
     
     public function categories();
+
+    public function getBlogsWithTags();
+
+    public function getAllTags();
+
+    public function attachTags(Blog $blog, array $tagIds);
+
+    public function syncTags($blogId, $tagIds);
+
 }

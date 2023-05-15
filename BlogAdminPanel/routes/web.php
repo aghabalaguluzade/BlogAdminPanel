@@ -6,6 +6,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactMeController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
                 Route::view('/', 'index')->name('home');
                 Route::resource('blogs', BlogController::class);
                 Route::resource('categories', CategoryController::class);
+                Route::resource('tags', TagController::class);
                 Route::put('blogs/updateStatus/{id}', [BlogController::class, 'updateStatus'])->name('blogs.updateStatus');
                 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
                 Route::post('/settings', [SettingsController::class, 'updateOrCreate'])->name('settings.updateOrCreate');

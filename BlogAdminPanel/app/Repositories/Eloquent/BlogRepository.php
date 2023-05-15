@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Support\Str;
 use App\Repositories\Contracts\BlogRepositoryInterface;
 
@@ -84,6 +85,27 @@ class BlogRepository implements BlogRepositoryInterface
         $categories = $this->categories->select('id','name')->get();
         
         return $categories;
+    }
+
+    public function getBlogsWithTags()
+    {
+        return Blog::with('tags')->get();
+    }
+
+    public function getAllTags()
+    {
+        return Tag::all();
+    }
+
+    public function attachTags(Blog $blog, array $tagIds)
+    {
+        $blog->tags()->sync($tagIds);
+    }
+
+    public function syncTags($blogId, $tagIds)
+    {
+        $blog = Blog::findOrFail($blogId);
+        $blog->tags()->sync($tagIds);
     }
 
 }

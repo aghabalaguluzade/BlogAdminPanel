@@ -16,7 +16,7 @@ class GeneralRepository
         return $model->create($data);
     }
 
-    public function update(Model $model, array $data, $id)
+    public function update(Model $model, $id, array $data)
     {
         $record = $model->findOrFail($id);
         $record->update($data);

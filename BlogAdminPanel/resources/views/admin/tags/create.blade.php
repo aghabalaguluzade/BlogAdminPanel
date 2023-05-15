@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
-@section('title', 'Redaktə etmək')
+@section('title', 'Əlavə etmək')
 @section('header')
-    Kateqoriya - <span class="fw-normal">Redaktə et</span>
+    Taq - <span class="fw-normal">Əlavə et</span>
 @endsection
 @section('content')
 				<!-- Content area -->
@@ -10,27 +10,26 @@
 					<!-- Form inputs -->
 					<div class="card">
 						<div class="card-header">
-							<h5 class="mb-0">Kateqoriya redaktə et</h5>
+							<h5 class="mb-0">Taq əlavə et</h5>
 						</div>
 						<div class="card-body">
                             @include('admin.errors.errors')
-                            <form action="{{ route('categories.update',$category->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('tags.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
                                 <div class="mb-4">
                                    <div class="mb-4">
                                     <div class="row mb-3">
-                                        <label class="col-form-label col-lg-2">Kateqoriya başlığı</label>
+                                        <label class="col-form-label col-lg-2">Taq başlığı</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" placeholder="Placeholder" name="name" value="{{ $category->name }}" />
+                                                <input type="text" class="form-control" placeholder="Placeholder" name="name" />
                                                 <label>Başlıq daxil edin....</label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="d-flex align-items-center justify-content-end">
-								<button type="submit" class="btn btn-primary">Redaktə et <i class="ph-paper-plane-tilt ms-2"></i></button>
+								<button type="submit" class="btn btn-primary">Əlavə et <i class="ph-paper-plane-tilt ms-2"></i></button>
 							</div>
                                 </div>
                             </form>

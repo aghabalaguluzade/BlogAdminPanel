@@ -11,7 +11,7 @@ class TagRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,14 @@ class TagRequest extends FormRequest
      */
     public function rules(): array
     {
+        if(request()->routeIs('tags.store')) {
+            $name = 'required';
+        }elseif(request()->routeIs('tags.update')) {
+            $name = 'sometimes';
+        }
+
         return [
-            //
+            'name' => [$name, 'string', 'max:255']
         ];
     }
 }

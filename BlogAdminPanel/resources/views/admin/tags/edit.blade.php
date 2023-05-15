@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title', 'Redaktə etmək')
 @section('header')
-    Kateqoriya - <span class="fw-normal">Redaktə et</span>
+    Taq - <span class="fw-normal">Redaktə et</span>
 @endsection
 @section('content')
 				<!-- Content area -->
@@ -10,20 +10,20 @@
 					<!-- Form inputs -->
 					<div class="card">
 						<div class="card-header">
-							<h5 class="mb-0">Kateqoriya redaktə et</h5>
+							<h5 class="mb-0">Taq redaktə et</h5>
 						</div>
 						<div class="card-body">
                             @include('admin.errors.errors')
-                            <form action="{{ route('categories.update',$category->id) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
+                            <form action="{{ route('tags.update',$tag?->id) }}" method="POST" enctype="multipart/form-data">
                                 @method('PUT')
+                                @csrf
                                 <div class="mb-4">
                                    <div class="mb-4">
                                     <div class="row mb-3">
-                                        <label class="col-form-label col-lg-2">Kateqoriya başlığı</label>
+                                        <label class="col-form-label col-lg-2">Taq başlığı</label>
                                         <div class="col-lg-10">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" placeholder="Placeholder" name="name" value="{{ $category->name }}" />
+                                                <input type="text" class="form-control" placeholder="Placeholder" name="name" value="{{ $tag?->name }}" />
                                                 <label>Başlıq daxil edin....</label>
                                             </div>
                                         </div>

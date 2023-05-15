@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Repositories\Eloquent\GeneralRepository;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -65,9 +64,10 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
-        $category = $this->genericRepository->update(new Category(), $request->validated(), $category);
+        $category = $this->genericRepository->update($category, $category->id, $request->validated());
 
         return redirect()->back()->with($category ? "success" : "error", true);
+
     }
 
     /**

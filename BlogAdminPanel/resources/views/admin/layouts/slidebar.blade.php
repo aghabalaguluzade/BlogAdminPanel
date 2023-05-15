@@ -49,6 +49,15 @@
 						</li>
 						
 						<li class="nav-item">
+							<a href="{{ route('tags.index') }}" class="nav-link {{ (request()->segment(2) == 'tags') ? 'active' : '' }}">
+								<i class="ph-article"></i>
+								<span>
+									Taq
+								</span>
+							</a>	
+						</li>
+
+						<li class="nav-item">
 							<a href="{{ route('blogs.index') }}" class="nav-link {{ (request()->segment(2) == 'blogs') ? 'active' : '' }}">
 								<i class="ph-article"></i>
 								<span>

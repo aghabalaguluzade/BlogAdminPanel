@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TagRequest;
 use App\Models\Tag;
 use App\Repositories\Eloquent\GeneralRepository;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -22,7 +21,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = $this->genericRepository->all(new Tag());
+        
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -30,7 +31,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tags.create');
     }
 
     /**
@@ -39,6 +40,8 @@ class TagController extends Controller
     public function store(TagRequest $request)
     {
         $tag = $this->genericRepository->create(new Tag(), $request->validated());
+
+        return redirect()->back()->with($tag ? "success" : "error", true);
     }
 
     /**
@@ -54,7 +57,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -62,7 +65,9 @@ class TagController extends Controller
      */
     public function update(TagRequest $request, Tag $tag)
     {
-        $tag = $this->genericRepository->update(new Tag(), $request->validated(), $tag);
+        $tag = $this->genericRepository->update($tag, $tag->id, $request->validated());
+        
+        return redirect()->back()->with($tag ? "success" : "error", true);
     }
 
     /**
