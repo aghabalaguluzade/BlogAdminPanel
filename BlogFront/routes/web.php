@@ -25,6 +25,8 @@ Route::get('/', [BlogController::class, 'home'])->name('home');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blog');
 Route::get('/search', [BlogController::class, 'search'])->name('search');
+Route::get('blogs/tag/{tag_id}', [BlogController::class, 'showByTag'])->where(['tag_id' => '[0-9]+'])->name('blogsByTag');
+Route::get('/tags', [BlogController::class, 'tags'])->name('tags');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/about', [AboutController::class, 'index'])->name('about');

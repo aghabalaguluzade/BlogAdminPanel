@@ -3,29 +3,6 @@
 @section('links')
     <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
     <script src="https://cdn.tiny.cloud/1/scvngxld7kolvh817hw9omsrym0g2d96ke02f1jb08mz6ih1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <style>
-    .upload-image input{
-        display: block !important;
-        width: 158px !important;
-        height: 45px !important;
-        opacity: 0 !important;
-        overflow: hidden !important;
-
-    }
-    .upload-image {
-        cursor:pointer;
-        width: 158px;
-        height: 45px;
-        overflow:hidden;
-        position:relative;
-        display:inline-block;
-        /*background-color:#fff;*/
-        background-repeat: no-repeat;
-        background-image:
-            url('http://icons.iconarchive.com/icons/martz90/circle/512/camera-icon.png');
-        background-size:20px 20px;
-    }
-    </style>
 @endsection
 @section('header')
     Haqqında - <span class="fw-normal">Əlavə et</span>
@@ -43,29 +20,31 @@
                             @include('admin.errors.errors')
                             <form action="{{ route('about.updateOrCreate') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="mb-4">
 
-                                    {{-- <div class="col-lg-3">
-                                    <div class="">
-                                        <div class="upload-image">
-                                            <input type='file' class="imgInp" data-id='img{{$about?->id}}' />
+                                @if($about->img)
+                                    <div class="row mb-3">
+                                    <span class="col-form-label col-lg-2">Çari foto</span>
+                                    <div class="col-lg-10">
+                                        <div class="form-floating">
+                                            <img src="{{ config('apidomain.url') . 'about/' . $about?->img }}" alt="{{ $about?->title }}" style="width:150px;height:150px" />
                                         </div>
-                                        <br>
-                                        <img id="img"  class="imgInpVal" src="" alt="your image" height="100" />
                                     </div>
-                                    </div> --}}
-                            
+                                </div>
+                                @endif
+
+                                <img id="uploadedImage" src="#" alt="Uploaded Image" accept="image/png, image/jpeg" style="display:none;">
+
+                                <div class="mb-4">
                                     <div class="row mb-3">
                                         <label class="col-form-label col-lg-2">Haqqında Şəkili</label>
                                         <div class="col-lg-10">
-                                            <div class="upload-image">
-                                            <input type='file' class="imgInp" data-id='img{{$about?->id}}' name="img" />
-                                        </div>
-                                        <br>
-                                        @if($about->img)
-                                        <img id="img{{$about?->id}}"  class="imgInpVal" src="{{ config('apidomain.url') .'about/'. $about?->img }}" height="100" />
-                                        @endif
-                                        <img id="img{{$about?->id}}"  class="imgInpVal" src="" height="100" />
+                                            <div class="input-group">
+                                                <input type="file" class="form-control" name="img" id="readUrl" />
+                                                <span class="input-group-text">.jpg</span>
+                                                <span class="input-group-text">.jpeg</span>
+                                                <span class="input-group-text">.png</span>
+                                                <span class="input-group-text">.webp</span>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -74,7 +53,6 @@
                                         <div class="col-lg-10">
                                             <div class="form-floating">
                                                 <textarea class="form-control" id="editor" style="height: 100px;" name="description">{!! $about?->description !!}</textarea>
-                                                {{-- <textarea class="form-control" id="editor" style="height: 100px;" name="description"></textarea> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -153,23 +131,17 @@
   });
 </script>
 <script>
-    function ImageSetter(input,target) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-            target.attr('src', e.target.result);
+    document.getElementById('readUrl').addEventListener('change', function(){
+        if (this.files[0] ) {
+            var picture = new FileReader();
+            picture.readAsDataURL(this.files[0]);
+            picture.addEventListener('load', function(event) {
+            document.getElementById('uploadedImage').setAttribute('src', event.target.result);
+            document.getElementById('uploadedImage').style.display = 'block';
+            document.getElementById('uploadedImage').style.height = '150px';
+            document.getElementById('uploadedImage').style.width = '150px';
+            });
         }
-
-        reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $(".imgInp").change(function(){
-        console.log('salam')
-        var imgDiv=$(this).data('id');
-        imgDiv=$('#' + imgDiv);
-        ImageSetter(this,imgDiv);
     });
 </script>
 @endsection

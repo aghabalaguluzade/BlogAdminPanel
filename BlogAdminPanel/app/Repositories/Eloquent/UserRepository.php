@@ -53,7 +53,7 @@ class UserRepository
                 unlink($user->img);
             }
             $image->move($directory, $img_name);
-            $img_name = $directory.$img_name;
+            $img_name = $img_name;
             $user->img = $img_name;
         }
 

@@ -2,8 +2,8 @@
 @section('title', 'Əlavə etmək')
 @section('links')
     <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/demo/pages/form_select2.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/forms/selects/select2.min.js') }}"></script>
 	<script src="https://cdn.tiny.cloud/1/scvngxld7kolvh817hw9omsrym0g2d96ke02f1jb08mz6ih1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 @endsection
 @section('header')
@@ -55,34 +55,33 @@
                                         </div>
                                     </div>
 
-
                                     <div class="row mb-3">
-                                        <label class="col-form-label col-lg-2">Kateqoriya</label>
+                                    <label class="col-form-label col-lg-2">Kateqoriya</label>
                                         <div class="col-lg-10">
-                                            <div class="input-group">
-                                                <select name="category_id">
+                                            <div class="form-floating">
+                                                <select class="form-select" name="category_id">
                                                     <option disabled selected>Kateqoriya seç...</option>
-                                            @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
                                                 </select>
+                                                <label>Kateqoriya</label>
                                             </div>
                                         </div>
-                                    </div>
+								    </div>
 
-                                    <div class="row mb-3">
+                                    <div class="mb-3 row">
                                         <label class="col-form-label col-lg-2">Taq</label>
-                                        <div class="col-lg-10">
-                                            <div class="input-group">
-                                                <select name="tags[]" class="tags-selector">
-                                                    <option disabled selected>Taq seç...</option>
-                                            @foreach ($tags as $tag)
-                                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                            @endforeach
-                                                </select>
-                                            </div>
+                                        <div class="col-lg-10" data-select2-id="312">
+                                            <select multiple="" name="tags[]" class="form-control select select2-hidden-accessible" data-select2-id="56" tabindex="-1" aria-hidden="true">
+                                                <optgroup label="" data-select2-id="313">
+                                                    @foreach ($tags as $tag)
+                                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                @endforeach
+                                                </optgroup>
+                                            </select>
                                         </div>
-                                    </div>
+								    </div>
 
                                     <div class="d-flex align-items-center justify-content-end">
 										<button type="submit" class="btn btn-primary">Əlavə et <i class="ph-paper-plane-tilt ms-2"></i></button>
@@ -97,11 +96,6 @@
 				<!-- content area -->
 @endsection
 @section('scripts')
-<script>
-    $(document).ready(function() {
-        $('.tags-selector').select2();
-    });
-</script>
 <script>
   var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   tinymce.init({

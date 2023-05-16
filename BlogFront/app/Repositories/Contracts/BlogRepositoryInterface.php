@@ -15,5 +15,11 @@ interface BlogRepositoryInterface
     public function search();
 
     public function getUser();
+
+    public function getBlogsWithTags();
+
+    public function getBlogsByTag($tagId);
+
+    public function getTags();
     
 }

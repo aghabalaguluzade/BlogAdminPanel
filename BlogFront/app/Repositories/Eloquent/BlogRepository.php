@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Blog;
+use App\Models\Tag;
 use App\Models\User;
 use App\Repositories\Contracts\BlogRepositoryInterface;
 
@@ -54,5 +55,23 @@ class BlogRepository implements BlogRepositoryInterface
     {
         return $this->user->first();
     }
+
+    public function getBlogsWithTags()
+    {
+        return Blog::with('tags')->where('status', 1)->orderBy('created_at', 'desc')->paginate(1);
+    }
     
+    public function getBlogsByTag($tagId)
+    {
+        return Blog::with('tags')->whereHas('tags', function ($query) use ($tagId) {
+            $query->where('tags.id', $tagId);
+        })->where('status', 1)->orderBy('created_at', 'desc')->paginate(1);
+    }
+
+    public function getTags() 
+    {
+        
+        return Tag::with('blogs')->select('id','name')->get();
+    }
+
 }

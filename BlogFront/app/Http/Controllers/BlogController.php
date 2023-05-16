@@ -15,7 +15,8 @@ class BlogController extends Controller
     
     public function index() {
 
-        $blogs = $this->blogRepository->paginateBlogs();
+        // $blogs = $this->blogRepository->paginateBlogs();
+        $blogs = $this->blogRepository->getBlogsWithTags();
         $user = $this->blogRepository->getUser();
         $reading_time = [];
         foreach ($blogs as $blog) {
@@ -60,4 +61,24 @@ class BlogController extends Controller
 
         return view('search', compact('blogs'));
     }
+
+    public function showByTag($tag_id)
+    {
+        $blogs = $this->blogRepository->getBlogsByTag($tag_id);
+        $reading_time = [];
+        foreach ($blogs as $recent) {
+            $reading_time[] = $this->blogRepository->readingTime($recent->content);
+        }
+        $user = $this->blogRepository->getUser();
+
+        return view('tag', compact('blogs','reading_time', 'user'));
+    }
+
+    public function tags() 
+    {
+        $tags = $this->blogRepository->getTags();
+
+        return view('tags', compact('tags'));
+    }
+    
 }

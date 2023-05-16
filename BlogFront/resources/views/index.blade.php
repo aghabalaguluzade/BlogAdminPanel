@@ -50,6 +50,13 @@
                   <img class="w-auto" src="{{ config('apidomain.path') .'settings/'. $user?->img }}" width="26" height="26"><span>{{ $user?->name }}</span>
               </li>
               <li class="list-inline-item mt-2">•</li>
+              <li class="list-inline-item mt-2">
+                <ul class="card-meta-tag list-inline">
+                @foreach ($blog->tags as $tag)
+                  <li class="list-inline-item small"><a href="{{ route('blogsByTag', ['tag_id' => $tag->id]) }}">{{ $tag->name }}</a></li>
+                @endforeach
+                </ul>
+              </li>
             </ul>
           </div>
         </article>

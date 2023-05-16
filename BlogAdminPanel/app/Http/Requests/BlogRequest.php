@@ -24,7 +24,7 @@ class BlogRequest extends FormRequest
         if(request()->routeIs('blogs.store')) {
             $imgValidation = 'required';
             $statusValidation = 'nullable';
-            $categoryValidation = 'required';
+            $categoryValidation = 'nullable';
             $tagValidation = 'sometimes';
         }elseif(request()->routeIs('blogs.update')) {
             $imgValidation = 'sometimes';
@@ -40,7 +40,7 @@ class BlogRequest extends FormRequest
             'slug' => ['string'],
             'status' => [$statusValidation],
             'category_id' => [$categoryValidation,'integer'],
-            'tags' => 'array',
+            'tags' => [$tagValidation,'array'],
             'tags.*' => 'exists:tags,id',
         ];
     }

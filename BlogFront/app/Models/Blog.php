@@ -11,4 +11,8 @@ class Blog extends Model
 
     protected $filable = ['title','content','img','status','slug','view_count'];
 
+    public function tags() {
+        return $this->belongsToMany(Tag::class, 'blog_tag', 'blog_id', 'tag_id');
+    }
+
 }

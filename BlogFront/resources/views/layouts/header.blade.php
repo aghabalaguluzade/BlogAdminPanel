@@ -29,6 +29,9 @@
               <li class="nav-item {{ request()->is('blogs') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('blogs') }}">Bloq</a>
               </li>
+              <li class="nav-item {{ request()->is('tags') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('tags') }}">Taqlar</a>
+              </li>
               <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('contact.index') }}">Əlaqə</a>
               </li>

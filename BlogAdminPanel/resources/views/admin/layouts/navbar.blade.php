@@ -18,8 +18,13 @@
 				<li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
 					<a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
 						<div class="status-indicator-container">
-							<img src="{{ config('apidomain.url') .'settings/'. auth()->user()->img }}" class="w-32px h-32px rounded-pill" alt="">
+						@if(auth()->user()->img == auth()->user()->img)
+							<img src="{{ config('apidomain.url') .'settings/'. auth()->user()->img }}" class="w-32px h-32px rounded-pill" alt="{{ auth()->user()->name }}" />
 							<span class="status-indicator bg-success"></span>
+						@else
+							<img src="{{ auth()->user()->img }}" class="w-32px h-32px rounded-pill" alt="avatar" />
+							<span class="status-indicator bg-success"></span>
+						@endif
 						</div>
 						<span class="d-none d-lg-inline-block mx-lg-2">{{ auth()->user()->name }}</span>
 					</a>

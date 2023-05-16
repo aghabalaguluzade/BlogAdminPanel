@@ -38,21 +38,19 @@
                          </thead>
                          <tbody>
                          
-                         
-
                          @foreach ($blogs as $blog)
                
                               <tr class="odd" id="all">
                                    <td class="sorting_1" id="loop">{{ $loop->iteration }}</td>
-                                   <td id="title">{{ Str::limit($blog->title, 60, '...') }}</td>
-                                   <td id="title">{{ $blog->category->name }}</td>
+                                   <td id="title">{{ Str::limit($blog->title, 10, '...') }}</td>
+                                   <td id="title">{{ $blog?->category?->name }}</td>
                                        <td id="title">
                                              @if ($blog->tags->isNotEmpty())
                                                   @foreach ($blog->tags as $tag)
                                                        <span class="badge bg-primary">{{ $tag->name }}</span><br>
                                                   @endforeach
                                              @else
-                                                  No tags
+                                                  Taq yoxdur
                                              @endif
                                        </td> 
                                    <td id="status_td">

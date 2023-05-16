@@ -35,7 +35,7 @@ class SettingsRepository implements SettingsRepositoryInterface
                 $directory = config('apidomain.path') .'/settings';
                 $img_name_logo = uniqid(true) . 'logo' . '.' . $image->getClientOriginalExtension();
                 $image->move($directory, $img_name_logo);
-                $img_name_logo = $directory . $img_name_logo;
+                $img_name_logo = $img_name_logo;
                 // $settings->logo = $img_name_logo;
                 $data['logo'] = $img_name_logo;
             }
@@ -45,7 +45,7 @@ class SettingsRepository implements SettingsRepositoryInterface
                 $directory = config('apidomain.path') .'/settings';
                 $img_name_favicon = uniqid(true) . 'favicon' . '.' . $image->getClientOriginalExtension();
                 $image->move($directory, $img_name_favicon);
-                $img_name_favicon = $directory . $img_name_favicon;
+                $img_name_favicon = $img_name_favicon;
                 // $settings->favicon = $img_name_favicon;
                 $data['favicon'] = $img_name_favicon;
                 

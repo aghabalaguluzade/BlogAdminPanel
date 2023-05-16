@@ -73,7 +73,7 @@
                                     <div class="row mb-3">
                                         <label class="col-form-label col-lg-2">Çari Favicon</label>
                                         <div class="col-lg-10">
-                                            <img src="{{ config('apidomain.url') .'settings/'. $settings?->favicon }}" alt="{{ $settings?->seo_title }}" /> 
+                                            <img src="{{ config('apidomain.url') . 'settings/' . $settings?->favicon }}" alt="{{ $settings?->seo_title }}" /> 
                                         </div>
                                     </div>
 

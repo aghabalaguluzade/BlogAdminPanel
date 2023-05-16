@@ -36,7 +36,7 @@ class AboutRepository implements AboutRepositoryInterface
             $directory = config('apidomain.path') .'/about';
             $img_name = 'image_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $image->move($directory, $img_name);
-            $img_name = $directory.$img_name;
+            $img_name = $img_name;
             $about['img'] = $img_name;
         }
 
@@ -53,7 +53,7 @@ class AboutRepository implements AboutRepositoryInterface
                     unlink($about->img);
                 }
                 $image->move($directory, $img_name);
-                $img_name = $directory.$img_name;
+                $img_name = $img_name;
                 $about->img = $img_name;
         }
 
