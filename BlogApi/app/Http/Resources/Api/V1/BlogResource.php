@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Resources\Api\V1;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,8 +20,10 @@ class BlogResource extends JsonResource
             'content' => $this->content,
             'status' => $this->status,
             'slug' => $this->slug,
+            'category_id' => $this->category->name,
             'view_count' => $this->view_count,
-            'created_at' => $this->created_at,       
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),    
+            'tags' => TagResource::collection($this->tags), 
         ];
     }
 }

@@ -22,4 +22,10 @@ class GeneralRepository
         $record->update($data);
         return $record;
     }
+
+    public function delete(Model $model, $id) {
+        $record = $model->findOrFail($id);
+        $record->delete();
+        return $record;
+    }
 }

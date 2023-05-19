@@ -9,5 +9,15 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $filable = ['title','content','img','status','slug','view_count'];
+    protected $fillable = ['title','content','img','status','slug','view_count'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class, 'blog_tag', 'blog_id', 'tag_id');
+    }
+
 }

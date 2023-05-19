@@ -75,6 +75,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag = $this->genericRepository->delete($tag,$tag->id);
+
+        return redirect()->back()->with($tag ? "success" : "error", true);
     }
 }

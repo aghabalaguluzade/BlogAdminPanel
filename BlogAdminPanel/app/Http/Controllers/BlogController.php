@@ -6,6 +6,7 @@ use App\Http\Requests\BlogRequest;
 use App\Http\Requests\StatusRequest;
 use App\Repositories\Contracts\BlogRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class BlogController extends Controller
 {
@@ -18,10 +19,15 @@ class BlogController extends Controller
 
     public function index()
     {
-        // $blogs = $this->blogRepository->all();
-        $categories = $this->blogRepository->categories();
-        $blogs = $this->blogRepository->getBlogsWithTags();
-        return view('admin.blogs.index', compact('blogs'))->with('categories', $categories);
+        $headers = [
+                'id' => '1',
+            ];
+            $response = Http::withHeaders($headers)->get('http://127.0.0.1:5000/api/categories/blogs')->json();
+        dd($response);
+            // $blogs = $this->blogRepository->all();
+        // $categories = $this->blogRepository->categories();
+        // $blogs = $this->blogRepository->getBlogsWithTags();
+        return view('admin.blogs.index');
     }
 
     public function show($id)
