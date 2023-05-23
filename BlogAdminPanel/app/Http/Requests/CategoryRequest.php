@@ -25,10 +25,12 @@ class CategoryRequest extends FormRequest
             $name = 'required';
         }elseif(request()->routeIs('categories.update')) {
             $name = 'sometimes';
+            $status = 'sometimes';
         }
 
         return [
-            'name' => [$name,'string','max:255']
+            'name' => [$name,'string','max:255'],
+            'status' => [$status,'string','max:255']
         ];
     }
 }

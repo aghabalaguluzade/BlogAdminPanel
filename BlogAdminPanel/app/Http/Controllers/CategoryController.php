@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\StatusRequest;
 use App\Models\Category;
+use App\Repositories\Contracts\BlogRepositoryInterface;
 use App\Repositories\Eloquent\GeneralRepository;
 
 class CategoryController extends Controller

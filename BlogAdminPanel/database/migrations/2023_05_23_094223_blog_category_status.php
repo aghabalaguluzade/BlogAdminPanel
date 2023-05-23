@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('categories', function(Blueprint $table) {
-            $table->boolean('status')->default(false);
+        Schema::table('categories', function (Blueprint $table) {
+            $table->enum('status', [0, 1])->default(0);
         });
     }
 

@@ -29,6 +29,19 @@
                                         </div>
                                     </div>
 
+                                    <div class="row mb-3">
+                                    <label class="col-form-label col-lg-2">Kateqoriya statusu</label>
+                                        <div class="col-lg-10">
+                                            <div class="form-floating">
+                                                <select class="form-select" name="status">
+                                                    <option value="1" {{ $category->status == 1 ? "selected" : "" }}>Aktiv</option>
+                                                    <option value="0" {{ $category->status == 0 ? "selected" : "" }}>Deaktiv</option>
+                                                </select>
+                                                <label>Kateqoriya Statusu</label>
+                                            </div>
+                                        </div>
+								    </div>
+
                                     <div class="d-flex align-items-center justify-content-end">
 								<button type="submit" class="btn btn-primary">Redaktə et <i class="ph-paper-plane-tilt ms-2"></i></button>
 							</div>

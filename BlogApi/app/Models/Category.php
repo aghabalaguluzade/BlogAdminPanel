@@ -13,6 +13,6 @@ class Category extends Model
 
     public function blogs()
     {
-        return $this->hasMany(Blog::class)->where('status', true);
+        return $this->hasMany(Blog::class)->where('status', 1);
     }
 }
